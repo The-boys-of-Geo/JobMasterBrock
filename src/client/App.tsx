@@ -1,24 +1,24 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import styles from './App.css'
+const styles = require('./App.css');
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-function App () {
-  const [test, setTest] = useState(`didn't work :((`)
+function App() {
+  const [test, setTest] = useState(`didn't work :((`);
 
   useEffect(() => {
     try {
       const testReq = async function () {
-        const response = await fetch('/api/users/login')
-        let successfulReq = await response.json()
+        const response = await fetch('/api/users/login');
+        let successfulReq = await response.json();
         console.log(successfulReq);
         setTest(successfulReq);
-      }
+      };
       testReq();
     } catch (err) {
       console.log(err);
     }
-  }, [])
+  }, []);
 
   return (
     <Router>
@@ -26,7 +26,7 @@ function App () {
         <h1>{test}</h1>
       </div>
     </Router>
-  )
+  );
 }
 
 export default App;
