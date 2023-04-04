@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 const styles = require('./App.css');
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import JobPage from './pages/JobPage';
+import { JobPage } from './pages/JobPage';
 
 function App() {
   const [test, setTest] = useState(`didn't work :((`);
