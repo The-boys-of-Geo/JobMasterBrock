@@ -4,7 +4,7 @@ const styles = require('./App.css');
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //import JobFeedContainer from './containers/JobFeedContainer';
 
-
+import Header from './components/header';
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
       <div>
         <h1>{test}</h1>
         <h1>Job Listings</h1>
+        <Header/>
        
       </div>
     </Router>
