@@ -1,5 +1,6 @@
 // jobFeedContainer.tsx
 import React, { useState } from 'react';
+// import JobCard from '../components/JobCard.tsx';
 import JobCard from '../components/jobCard';
 
 interface Job {
@@ -12,6 +13,7 @@ interface Job {
   remote: boolean;
   requirements: string;
   salary: number;
+  easyApply: boolean;
 }
 
 const JobFeedContainer: React.FC = () => {
@@ -34,20 +36,24 @@ const JobFeedContainer: React.FC = () => {
         remote: true,
         requirements: 'Minimum 3 years experience with React.',
         salary: 80000,
+        easyApply: true,
       })}>Add Job</button>
       {jobs.map(job => (
-        <JobCard
-          key={job.id}
-          id={job.id}
-          datePosted={job.datePosted}
-          title={job.title}
-          company={job.company}
-          location={job.location}
-          description={job.description}
-          remote={job.remote}
-          requirements={job.requirements}
-          salary={job.salary}
-        />
+        <div key={job.id}>
+          <h2>{job.title}{job.easyApply && <span style={{ fontWeight: 'bold' }}>EasyApply</span>}</h2>
+          <p>{job.company}</p>
+          <p>{job.location}</p>
+          <p>{job.salary}</p>
+          <p>{job.datePosted}</p>
+          <button onClick={() => console.log('Interested clicked')}>Interested</button>
+          {job.description && (
+            <div>
+              <p>{job.description}</p>
+              <p>{job.requirements}</p>
+              <p>{job.remote ? 'Remote' : 'Not remote'}</p>
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
