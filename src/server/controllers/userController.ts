@@ -96,7 +96,6 @@ userController.addInterestedJob = async function (
 ) {
   try {
     const { userId, jobData } = req.body;
-    console.log('jobData: ', jobData);
     /**
      * jobData = {
      * job_id
@@ -117,7 +116,7 @@ userController.addInterestedJob = async function (
     );
     if (checkJobData.rows.length === 0) {
       const queryString =
-        'INSERT INTO jobs(job_id, date_posted, remote/on-site, location, company_name, title, requirements) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;';
+        'INSERT INTO jobs(job_id, date_posted, remote_or_onsite, location, company_name, title) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;';
       const values = [
         jobData.job_id,
         jobData.date_posted,
@@ -126,13 +125,16 @@ userController.addInterestedJob = async function (
         jobData.company_name,
         jobData.title,
       ];
-      const data = await db.query(queryString, values);
-      console.log('data: ', data);
+      await db.query(queryString, values);
     }
+    const addNewApplication =
+      'INSERT INTO applications(user_id, job_id, status) VALUES($1, $2, $3) RETURNING *;';
+    const applicationVals = [userId, jobData.job_id, 'interested'];
+    await db.query(addNewApplication, applicationVals);
     return next();
   } catch (error) {
     const err = {
-      log: `Error: not able to add interested job to user, ${error}`,
+      log: `Error: not able to add interested job, ${error}`,
       status: 404,
       message: {
         err: 'Error in userController.addInterestedJob: Check server log for more details.',
@@ -142,14 +144,17 @@ userController.addInterestedJob = async function (
   }
 };
 
-userController.removeInterestedJob = async function (
+userController.removeJob = async function (
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const { userId, jobId } = req.body;
-  const query = '';
   try {
+    const { userId, jobId } = req.body;
+    const query = 'DELETE FROM applications WHERE user_ID=$1 AND job_ID=$2';
+    const values = [userId, jobId];
+    await db.query(query, values);
+    return next();
   } catch (error) {
     const err = {
       log: `Error: not able to scrape LinkedIn URL at jobID, ${error}`,

@@ -11,6 +11,7 @@ interface scrapedInfoData {
   Location: String;
   Link: String;
   DatePosted: String;
+  TimePosted: String;
   ID: String;
   Salary?: String;
 }
@@ -88,6 +89,9 @@ scraperController.scrapeJobListings = async function (
         const link = $(element).find('a.base-card__full-link').attr('href');
         const datePosted = $(element)
           .find('time.job-search-card__listdate--new')
+          .attr('datetime');
+        const timePosted = $(element)
+          .find('time.job-search-card__listdate--new')
           .text()
           .trim();
         // "$43.00\n            -\n            $60.00"
@@ -106,6 +110,7 @@ scraperController.scrapeJobListings = async function (
             Location: location,
             Link: link,
             DatePosted: datePosted,
+            TimePosted: timePosted,
             ID: IDslice,
             Salary: salaryParsed,
           });
