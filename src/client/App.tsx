@@ -5,17 +5,18 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { JobPage } from './pages/JobPage';
 //import { ApplicationsPage } from './pages/ApplicationsPage'
 import { InterviewPage } from './pages/InterviewPage'
-
+import AuthModal from './components/AuthModal'
 function App() {
-
+  const [signedIn, setSignedIn] = useState(false);
 
 
   return (
     <Router>
       <Routes>
-      <Route path="/" element={ <JobPage />} />
-      {/* <Route path="/applications" element={ <ApplicationsPage />} /> */}
-      <Route path="/interviews" element={ <InterviewPage />} />
+        <Route path='/' element={<AuthModal />} />
+        <Route path="/" element={ <JobPage />} />
+        {/* <Route path="/applications" element={ <ApplicationsPage />} /> */}
+        <Route path="/interviews" element={ <InterviewPage />} />
       </Routes>
        
       

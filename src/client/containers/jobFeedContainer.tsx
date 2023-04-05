@@ -36,14 +36,15 @@ interface JobCardProps {
 
 const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count } ) => {
   
-
+  console.log(jobs);
 
   //example job added
   return (
+    
     <div className='JobCardFeed'>
-      {jobs.map((e)=>{
+      {jobs.map((job)=>{
        return (
-       <JobCard Title='s' Company='' Location='' Link='' DatePosted='' ID={65}/>
+       <JobCard Title={job.Title} Company={job.Company} Location={job.Location} Link={job.Link} DatePosted={job.DatePosted} ID={job.ID} key={job.ID}/>
      );})}
       
     </div>

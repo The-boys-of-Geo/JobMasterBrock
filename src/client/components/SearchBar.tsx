@@ -106,7 +106,10 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
           <input type="checkbox" name="searchEasyApply" checked={searchEasyApply} onChange={handleSearchChange} />
           Easy Apply
         </label> */}
-        <button className="Input" type="submit">Search</button>
+        <button 
+          className="Input" 
+          type="submit"
+        >Search</button>
       </form>
     </div>
   );

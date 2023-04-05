@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from 'pg';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 const PG_URI =
   process.env.DB_URL ||
   'postgres://titmxapf:7zZg8KnhAoS7lAd6X6iooORXUHBPImXT@lallah.db.elephantsql.com/titmxapf';
