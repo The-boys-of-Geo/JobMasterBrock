@@ -1,37 +1,58 @@
-import React from "react";
+import React, { useState } from 'react';
+import type { JobFeedProps } from '../containers/jobFeedContainer';
 
-//define two interfaces 
-//#1 jobCard 
-export interface JobCard {
-        id: number,
-        datePosted : number,
-        title: string,
-        company: string, 
-        location: string, 
-        description: string,
-        remote: boolean,
-        requirements: string, 
-        salary: number
+interface JobCardProps {
+  Title: string;
+  Company: string;
+  Location: string;
+  Link: string;
+  DatePosted: string;
+  ID: number;
+
+}
+
+const JobCard: React.FC<JobCardProps> = ({
+  Title,
+  Company,
+  Location,
+  Link,
+  DatePosted,
+  ID,
+}) => {
+
+  const onInterested = async () => {
+    try {
+      const response = await fetch('/interested', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ jobId: ID }),
+      });
+
+      if (response.ok) {
+        console.log('Job successfully added to interested list');
+      } else {
+        console.log('Failed to add job to interested list');
+      }
+    } catch (error) {
+      console.error('Error occurred while adding job to interested list:', error);
     }
-//#2 jobCardProps - props that jobCard will accept
-export interface jobCardProps{
-    jobCard: JobCard;
-}
+  };
 
-//declare job card function 
-export const JobCard = ({jobCard}: jobCardProps) =>{
-    return (
-    <div className = 'job-card'>
-        <h1>{jobCard.title}</h1>
-        <h2>{jobCard.company}</h2>
-        <h2>{jobCard.datePosted}</h2>
-        <p>{jobCard.location}</p>
-        <p>{jobCard.description}</p>
-        <p>{jobCard.remote}</p>
-        <p>{jobCard.requirements}</p>
-        <p>{jobCard.salary}</p>
+  return (
+    <div>
+      <h2>{Title}</h2>
+      <p>{Company}</p>
+      <p>{Location}</p>
+      <p>{Link}</p>
+      <p>{DatePosted}</p>
+      <p>{ID}</p>
+      <button onClick={onInterested}>Interested</button>
     </div>
-    );
-}
+  );
+};
 
 export default JobCard;
+
+

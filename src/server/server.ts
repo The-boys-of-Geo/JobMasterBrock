@@ -1,4 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
+let cors = require('cors')
 import path from 'path';
 import bodyParser from 'body-parser';
 
@@ -12,6 +13,7 @@ import scraper from './routes/scrapeRouter';
 const PORT = 3000;
 
 //****** FILTERS ******//
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

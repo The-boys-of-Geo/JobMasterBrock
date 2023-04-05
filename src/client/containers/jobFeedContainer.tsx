@@ -1,46 +1,41 @@
-import React from "react";
-import  JobCard from "../components/jobCard"; 
+// jobFeedContainer.tsx
+import React, { useState } from 'react';
+// import JobCard from '../components/JobCard.tsx';
+import JobCard from '../components/jobCard';
+import { searchBody } from '../pages/JobPage';
 
-
-// interface Job {
-//         id: number,
-//         datePosted : number,
-//         title: string,
-//         company: string, 
-//         location: string, 
-//         description: string,
-//         remote: boolean,
-//         requirements: string, 
-//         salary: number
-// }
-//render jobCard into the feed container 
-interface jobFeedContainerProps {
-    jobCards: JobCard[];
+export interface JobFeedProps {
+  jobs: any[]
+  handleSearchSubmit: (jobSearch: searchBody) => Promise<void>
+  jobsQuery: any
+  count: number
 }
-// const JobFeedContainer = ({jobCards}: jobFeedContainerProps) => {
-//   const fakeJob = {
-//     id: 1,
-//     datePosted : Date.now(),
-//     title: 'Software Engineer',
-//     company: 'Raytheon', 
-//     location: 'Oklahoma', 
-//     description: 'building bombs',
-//     remote: false,
-//     requirements: 'javascript', 
-//     salary: 300000
-//   };
-//testjobs 
+
+interface Job {
+  id: number;
+  datePosted: string;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  remote: boolean;
+  requirements: string;
+  salary: number;
+  easyApply: boolean;
+}
 
 
-  const JobFeedContainer = ({ jobCards }: jobFeedContainerProps) => {
-    return (
-      <div className="job-feed-container">
-        {jobCards.map((jobCard) => (
-          <JobCard key={jobCard.title} jobCard={jobCard} />
-        ))}
-      </div>
-    );
-  };
+const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count } ) => {
+  
 
 
-module.exports = JobFeedContainer;
+  //example job added
+  return (
+    <div>
+      
+      
+    </div>
+  );
+};
+
+export default JobFeedContainer;
