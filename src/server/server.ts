@@ -22,14 +22,6 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const csp = require('express-csp-header');
-app.use(csp({
-    policies: {
-        'default-src': [csp.NONE],
-        'img-src': [csp.SELF],
-    }
-}));
-
 
 //****** REQUESTS ******//
 app.use('/api/users', users);

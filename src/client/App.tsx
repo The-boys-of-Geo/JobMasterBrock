@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/auth" element={<AuthModal />} />
         <Route path="/" element={ <JobPage />} />
-        <Route path="/applications" element={ <ApplicationsPage /> } />
+        {/* <Route path="/applications" element={ <ApplicationsPage /> } /> */}
         <Route path="/interviews" element={ <InterviewPage />} />
       </Routes>
     </Router>
