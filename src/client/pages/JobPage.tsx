@@ -24,13 +24,14 @@ export type searchBody = {
 
 export const JobPage: React.FC = () => {
   const [jobs, setJobs] = useState([]);
-  const [jobsQuery, setJobsQuery] = useState(null)
-  const [count, setCount] = useState(0)
+  const [jobsQuery, setJobsQuery] = useState(null);
+  const [count, setCount] = useState(0);
+  
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
     setJobsQuery(jobSearch);
     try {
-      const response = await fetch('localhost:3000/api/search/getLinkedInData', {
+      const response = await fetch('/api/search/getLinkedInData', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

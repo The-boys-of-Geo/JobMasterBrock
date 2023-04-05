@@ -22,7 +22,7 @@ const JobCard: React.FC<JobCardProps> = ({
 
   const onInterested = async () => {
     try {
-      const response = await fetch('/interested', {
+      const response = await fetch('api/user/interested', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,15 +41,17 @@ const JobCard: React.FC<JobCardProps> = ({
   };
 
   return (
+    
+    
+
     <div className='JobCard'>
       <div className='JobCardInner'>
-        <h2>{Title}</h2>
+        <a href={Link}>{Title}</a>
         <p>{Company}</p>
         <p>{Location}</p>
-        <p>{Link}</p>
         <p>{DatePosted}</p>
-        <p>{ID}</p>
-        <button onClick={onInterested}>Interested</button>
+        <button id='interestedButton' onClick={onInterested}>Interested</button>
+        <button id='detailsButton' onClick={onInterested}>Details</button>
       </div>
     </div>
   );
