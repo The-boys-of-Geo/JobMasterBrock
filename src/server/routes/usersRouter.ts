@@ -20,6 +20,14 @@ router.delete(
   }
 );
 
+router.get(
+  '/applications/:userId',
+  userController.getUserApps,
+  (req: Request, res: Response) => {
+    res.status(200).json(res.locals.userApps);
+  }
+);
+
 router.post('/signup', userController.signup, (req: Request, res: Response) => {
   res.status(200).json('Successfully Signed Up');
 });
