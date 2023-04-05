@@ -18,7 +18,7 @@ const JobCard: React.FC<JobCardProps> = ({
   Link,
   DatePosted,
   ID,
-}) => {
+  }) => {
 
   const onInterested = async () => {
     try {
@@ -41,14 +41,16 @@ const JobCard: React.FC<JobCardProps> = ({
   };
 
   return (
-    <div>
-      <h2>{Title}</h2>
-      <p>{Company}</p>
-      <p>{Location}</p>
-      <p>{Link}</p>
-      <p>{DatePosted}</p>
-      <p>{ID}</p>
-      <button onClick={onInterested}>Interested</button>
+    <div className='JobCard'>
+      <div className='JobCardInner'>
+        <h2>{Title}</h2>
+        <p>{Company}</p>
+        <p>{Location}</p>
+        <p>{Link}</p>
+        <p>{DatePosted}</p>
+        <p>{ID}</p>
+        <button onClick={onInterested}>Interested</button>
+      </div>
     </div>
   );
 };

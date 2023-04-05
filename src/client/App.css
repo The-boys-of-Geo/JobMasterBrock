@@ -1,7 +1,98 @@
 #page {
-  background-color: hsl(198.8, 26.7%, 64.7%);
+  background-color: var(--primary);
 }
 
 #root {
-  color: white(18.8, 26.7%, 64.7%);
+  color: white(167, 72%, 60%);
+}
+
+:root {
+  --primary: hsl(167, 72%, 60%);
+  --primaryLight: hsl(167, 72%, 85%);
+  --accent: hsl(241, 100%, 77%);
+}
+
+.JobPage {
+  display: grid;
+  grid-template-rows: 2;
+  grid-template-areas:
+  "header header"
+  "JobFeed JobSheet";
+}
+
+.header {
+  grid-row: 1;
+  grid-area: header;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+
+
+  padding: 5px 5px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 1.0);
+  background-color: var(--accent);
+  margin: 4px 4px;
+}
+
+.PageDropdown {
+  margin: 2px 2px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--primaryLight);
+}
+
+/* .SearchBar {
+
+  
+} */
+
+.Input {
+  margin: 2px 2px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--primaryLight);
+}
+
+.JobCardFeed {
+  grid-row: 2;
+  grid-area: JobFeed;
+  height: auto;
+
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 1.0);
+  border-radius: 2px;
+  background-color: var(--accent);
+  margin: 4px 4px;
+}
+
+.JobCard {
+  display: flex;
+  border: 3px solid rgba(0, 0, 0, 1.0);
+}
+
+.JobCardInner {
+  
+  padding: 5px 5px;
+  background-color: var(--primaryLight);
+}
+
+.JobSheet {
+  grid-row: 2;
+  grid-area: JobSheet;
+  justify-self: stretch;
+
+  border: 1px solid rgba(0, 0, 0, 1.0);
+  border-radius: 3px;
+  background-color: var(--accent);
+  margin: 4px 4px;
+}
+
+.JobSheetInner {
+  border-radius: 2px;
+  margin: 10px 10px;
+  padding: 5px 5px;
+  background-color: var(--primaryLight);
 }

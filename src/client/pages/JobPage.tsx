@@ -30,7 +30,7 @@ export const JobPage: React.FC = () => {
   const handleSearchSubmit = async (jobSearch: searchBody) => {
     setJobsQuery(jobSearch);
     try {
-      const response = await fetch('/api/search/getLinkedInData', {
+      const response = await fetch('localhost:3000/api/search/getLinkedInData', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const JobPage: React.FC = () => {
  
 
   return (
-    <div>
+    <div className='JobPage'>
       <Header 
         handleSearchSubmit={handleSearchSubmit}
         setJobs={setJobs}
@@ -62,7 +62,7 @@ export const JobPage: React.FC = () => {
         handleSearchSubmit={handleSearchSubmit}
         jobsQuery={jobsQuery}
         count={count}
-      /> // pass jobs prop here
+      />
       <JobSheet />
     </div>
   )

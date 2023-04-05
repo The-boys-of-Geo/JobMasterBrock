@@ -23,6 +23,15 @@ interface Job {
   salary: number;
   easyApply: boolean;
 }
+interface JobCardProps {
+  Title: string;
+  Company: string;
+  Location: string;
+  Link: string;
+  DatePosted: string;
+  ID: number;
+
+}
 
 
 const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count } ) => {
@@ -31,8 +40,11 @@ const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, j
 
   //example job added
   return (
-    <div>
-      
+    <div className='JobCardFeed'>
+      {jobs.map((e)=>{
+       return (
+       <JobCard Title='s' Company='' Location='' Link='' DatePosted='' ID={65}/>
+     );})}
       
     </div>
   );
