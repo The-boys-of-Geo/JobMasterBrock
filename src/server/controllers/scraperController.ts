@@ -95,7 +95,7 @@ scraperController.scrapeJobListings = async function (
           .trim();
         const salaryParsed = salary.replaceAll('\n            ', '');
         const ID = $(element).find('div').attr('data-entity-urn');
-        if (jobs !== '') {
+        if (jobs !== '' && ID) {
           const IDindex = ID.lastIndexOf(':');
           const IDslice = ID.slice(IDindex + 1);
           scrapedInfo.push({

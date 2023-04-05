@@ -8,7 +8,7 @@ export const ApplicationsPage: React.FC = () => {
   const column1 = state.columnOrder.map(columnId => {
     const column = state.columns[columnId];
     const tasks = column.taskIds.map(taskId => state.tasks[taskId])
-    return <Column key={column.id} column={column} tasks={tasks} />;
+    //return <Column key={column.id} column={column} tasks={tasks} />;
   })
   return(
     <div>
@@ -16,18 +16,8 @@ export const ApplicationsPage: React.FC = () => {
     </div>
   )
 
-import React ,{ useState, useEffect } from 'react';
-import { Header } from '../components/Components';
-
-export const ApplicationsPage: React.FC = () => {
 
 
 
 
-  return (
-    <div>
-      <h1>Howdy from Applications</h1>
-
-    </div>
-  )
-};
+}
