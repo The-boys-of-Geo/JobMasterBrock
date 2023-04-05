@@ -12,6 +12,11 @@ import scraper from './routes/scrapeRouter';
 //****** PORT ******//
 const PORT = 3000;
 
+app.use(express.static(path.join(__dirname, '../client')));
+// Handle all other requests with React Router
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/client/index.html'));
+});
 //****** FILTERS ******//
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -29,6 +34,7 @@ app.use(csp({
 //****** REQUESTS ******//
 app.use('/api/users', users);
 app.use('/api/search', scraper);
+
 
 //****** ERROR HANDLERS ******//
 app.use('*', (req: Request, res: Response) =>
