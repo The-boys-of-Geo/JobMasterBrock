@@ -13,7 +13,7 @@ router.post(
 );
 
 router.get(
-  '/getLinkedInData/:jobID',
+  '/getLinkedInData/:jobID', scraperController.test,
   scraperController.scrapeJobInfo,
   (req: Request, res: Response) => {
     res.status(200).send(res.locals.jobData);

@@ -4,16 +4,17 @@ export interface JobFeedProps {
   jobs: any[];
 }
 export interface JobSheetProps {
-  handleSearchSubmit: (useSearchParms: URLSearchParams) => Promise<void>;
+  // handleSearchSubmit: (useSearchParms: URLSearchParams) => Promise<void>,
+  detailJob: String
 }
 
 //define header component
-export const JobSheet: React.FC = () => {
+export const JobSheet: React.FC<JobSheetProps> = ({detailJob}) => {
   //render components Jobs and search bar
   return (
     <div className="JobSheet">
       <div className="JobSheetInner">
-        <h1>JOB SHEET COMPONENT</h1>
+        {detailJob}
       </div>
     </div>
   );

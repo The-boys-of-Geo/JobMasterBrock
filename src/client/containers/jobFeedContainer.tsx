@@ -9,6 +9,7 @@ export interface JobFeedProps {
   handleSearchSubmit: (jobSearch: searchBody) => Promise<void>
   jobsQuery: any
   count: number
+  handleDetailRequest: (jobID: number) => Promise<void>
 }
 
 interface Job {
@@ -34,17 +35,14 @@ interface JobCardProps {
 }
 
 
-const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count } ) => {
-  
-  console.log(jobs);
+const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count, handleDetailRequest } ) => {
 
-  //example job added
   return (
-    
+
     <div className='JobCardFeed'>
       {jobs.map((job)=>{
        return (
-       <JobCard Title={job.Title} Company={job.Company} Location={job.Location} Link={job.Link} DatePosted={job.DatePosted} ID={job.ID} key={job.ID}/>
+       <JobCard Title={job.Title} Company={job.Company} Location={job.Location} Link={job.Link} DatePosted={job.DatePosted} ID={job.ID} key={job.ID} handleDetailRequest={handleDetailRequest}/>
      );})}
       
     </div>

@@ -6,15 +6,15 @@
   color: white(167, 72%, 60%);
 }
 
-body::-webkit-scrollbar {
+.JobCardFeed::-webkit-scrollbar {
   width: 4px;               /* width of the entire scrollbar */
 }
 
-body::-webkit-scrollbar-track {
+.JobCardFeed::-webkit-scrollbar-track {
   background: var(--primaryLight);        /* color of the tracking area */
 }
 
-body::-webkit-scrollbar-thumb {
+.JobCardFeed::-webkit-scrollbar-thumb {
   background-color: var(--primaryLight);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: none;  /* creates padding around scroll thumb */
@@ -59,7 +59,8 @@ body::-webkit-scrollbar-thumb {
 
 .JobPage {
   display: grid;
-  grid-template-rows: 7% 93%;
+  height: 95vh;
+  grid-template-rows: auto 93%;
   grid-template-columns: 34% 66%;
   grid-template-areas:
   "header header"
@@ -107,7 +108,6 @@ body::-webkit-scrollbar-thumb {
 .JobCardFeed {
   grid-row: 2;
   grid-area: JobFeed;
-  height: 600px;
   
   overflow-y: scroll;
 

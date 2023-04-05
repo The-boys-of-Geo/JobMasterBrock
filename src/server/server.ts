@@ -1,5 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-let cors = require('cors')
+// let cors = require('cors')
 import path from 'path';
 import bodyParser from 'body-parser';
 
@@ -12,13 +12,14 @@ import scraper from './routes/scrapeRouter';
 //****** PORT ******//
 const PORT = 3000;
 
+
 app.use(express.static(path.join(__dirname, '../client')));
 // Handle all other requests with React Router
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/index.html'));
 });
 //****** FILTERS ******//
-app.use(cors())
+// app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -34,6 +35,7 @@ app.use('*', (req: Request, res: Response) =>
 );
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.log('howdy from global error handler');
   const defaultErr = {
     log: 'Server Error',
     status: 500,

@@ -8,7 +8,7 @@ interface JobCardProps {
   Link: string;
   DatePosted: string;
   ID: number;
-
+  handleDetailRequest: (jobID: number) => Promise<void>
 }
 
 const JobCard: React.FC<JobCardProps> = ({
@@ -18,6 +18,7 @@ const JobCard: React.FC<JobCardProps> = ({
   Link,
   DatePosted,
   ID,
+  handleDetailRequest
   }) => {
 
   const onInterested = async () => {
@@ -51,7 +52,13 @@ const JobCard: React.FC<JobCardProps> = ({
         <p>{Location}</p>
         <p>{DatePosted}</p>
         <button id='interestedButton' onClick={onInterested}>Interested</button>
-        <button id='detailsButton' onClick={onInterested}>Details</button>
+        <button id='detailsButton' 
+          onClick={
+            (event) => {
+              event.preventDefault()
+              handleDetailRequest(ID);
+            }}
+        >Details</button>
       </div>
     </div>
   );

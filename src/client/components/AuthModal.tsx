@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 
+interface AuthModalProps {
+  setSignedIn: Dispatch<SetStateAction<boolean>>
+  setUserID: Dispatch<SetStateAction<number>>
+}
 
-const AuthModal: React.FC = () => {
+const AuthModal: React.FC<AuthModalProps> = ( { setSignedIn, setUserID } ) => {
   const [loginPage, setLoginPage] = useState(false)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -28,6 +32,7 @@ const AuthModal: React.FC = () => {
       });
 
       if (response.ok) {
+        setSignedIn(true);
         console.log('successfully signed in');
       } else {
         console.log('Failed to sign in');
@@ -49,6 +54,7 @@ const AuthModal: React.FC = () => {
         
       if (response.ok) {
         console.log('SignedUp');
+        setSignedIn(true);
       } else {
         console.log('Failed to signup');
       }

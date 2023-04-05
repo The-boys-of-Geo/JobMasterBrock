@@ -38,7 +38,7 @@ userController.signup = async (
       'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *;';
     const values = [username, hashedPassword];
     const data = await db.query(queryString, values);
-    res.locals.currentUser = data.rows[0];
+    res.locals.currentUser = data.rows[0].user_id;
     return next();
   } catch (error) {
     const err = {
@@ -76,7 +76,8 @@ userController.login = async function (
         },
       });
     //stores the data onto local storage if user and pass is successful
-    res.locals.currentUser = user.rows[0];
+    res.locals.currentUser = user.rows[0].user_id;
+    console.log('res.locals.currentUser: ', res.locals.currentUser);
     return next();
   } catch (error) {
     const err = {
@@ -161,7 +162,7 @@ userController.removeJob = async function (
       log: `Error: not able to scrape LinkedIn URL at jobID, ${error}`,
       status: 404,
       message: {
-        err: 'Error in scraperController.scrapeJobInfo: Check server log for more details.',
+        err: 'Error in userController.removeJob: Check server log for more details.',
       },
     };
     return next(err);

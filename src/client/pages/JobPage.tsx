@@ -26,6 +26,7 @@ export const JobPage: React.FC = () => {
   const [jobs, setJobs] = useState([]);
   const [jobsQuery, setJobsQuery] = useState(null);
   const [count, setCount] = useState(0);
+  const [detailJob, setDetailJob] = useState(null)
   
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
@@ -50,6 +51,31 @@ export const JobPage: React.FC = () => {
       console.log(error, `catch block error`)
     }
   };
+
+  const handleDetailRequest = async (jobID: number) => {
+    
+    try {
+      const response = await fetch(`/api/search/getLinkedInData/${jobID}`,
+      {
+        method:'GET',
+        headers: {
+          'Access-Control-Allow-Origin':'*'
+        }
+      });
+      if (response.ok) {
+        const jobDetail = await response.json();
+        setDetailJob(jobDetail)
+      } else {
+        console.log(`Request failed with status ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error, `catch block error`)
+    }
+  };
+
+  const handlePageChange = function () {
+    
+  }
  
 
   return (
@@ -63,8 +89,9 @@ export const JobPage: React.FC = () => {
         handleSearchSubmit={handleSearchSubmit}
         jobsQuery={jobsQuery}
         count={count}
+        handleDetailRequest={handleDetailRequest}
       />
-      <JobSheet />
+      <JobSheet detailJob={detailJob} />
     </div>
   )
 };

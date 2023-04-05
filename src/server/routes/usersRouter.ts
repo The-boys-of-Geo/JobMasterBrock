@@ -29,9 +29,9 @@ router.get(
 );
 
 router.post('/signup', userController.signup, (req: Request, res: Response) => {
-  res.status(200).json('Successfully Signed Up');
+  return res.status(200).json(res.locals.currentUser);
 });
 router.post('/login', userController.login, (req: Request, res: Response) => {
-  res.status(200).json('Successfully Logged In');
+  return res.status(200).json(res.locals.currentUser);
 });
 export default router;

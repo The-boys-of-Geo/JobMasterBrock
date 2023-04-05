@@ -62,7 +62,6 @@ scraperController.scrapeJobListings = async function (
       }
     });
     let url = `https://www.linkedin.com/jobs/search?keywords=${searchParsed}&location=${locationParsed}&sortBy=R&f_TPR=r${timeParsed}&f_JT=${jobTypeParsed}&position=1&pageNum=${countParsed}`;
-    console.log('url: ', url);
     axios(url).then((response) => {
       const html = response.data;
       const $ = load(html);
@@ -132,6 +131,7 @@ scraperController.scrapeJobInfo = async function (
 ) {
   try {
     const { jobID } = req.params;
+    console.log('jobID: ', jobID);
     //
     let url = `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${jobID}`;
     //
@@ -144,6 +144,7 @@ scraperController.scrapeJobInfo = async function (
       return next();
     });
   } catch (error) {
+    console.log('inside catch block: ', error)
     const err = {
       log: `Error: not able to scrape LinkedIn URL at jobID, ${error}`,
       status: 404,
@@ -154,4 +155,14 @@ scraperController.scrapeJobInfo = async function (
     return next(err);
   }
 };
+
+scraperController.test = function (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  console.log('test middleware invoked')
+  console.log('req: ', req)
+};
+
 export default scraperController;
