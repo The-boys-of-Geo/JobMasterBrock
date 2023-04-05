@@ -24,12 +24,6 @@ scraperController.scrapeJobListings = async function (
 ) {
   try {
     const scrapedInfo: scrapedInfoType = [];
-    let jobType = {
-      FT: false,
-      PT: true,
-      C: false,
-      I: false,
-    };
     /**
      * body = {
      * search: 'Software Engineer'
@@ -45,7 +39,7 @@ scraperController.scrapeJobListings = async function (
      * }
      */
     //TODO add jobType to req.body
-    const { search, location, time, count } = req.body;
+    const { search, location, time, count, jobType } = req.body;
     //www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=United%20States&sortBy=R&f_TPR=r86400&f_JT=F%2CP%2CC&position=1&pageNum=0
     // https: //www.linkedin.com/jobs/search?keywords=software%20engineer&location=United%20States&sortBy=R&f_TPR=r311040000&f_JT=%2CFT%2CPT%2CC%2CI&position=1&pageNum=0
     // f_JT=F%2CP%2CC%2CI%2CO
