@@ -18,21 +18,21 @@ app.use(express.json());
 //****** REQUESTS ******//
 app.use('/api/users', users);
 app.use('/api/search', scraper);
-//****** ERROR HANDLERS ******//
 
+//****** ERROR HANDLERS ******//
 app.use('*', (req: Request, res: Response) =>
   res.status(404).json('ERROR 404: not found')
 );
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  const errObj = {};
   const defaultErr = {
-    message: 'server error',
-    error: 500,
-    log: 'something went terribly wrong 0_o',
+    log: 'Server Error',
+    status: 500,
+    message: { err: 'something went terribly wrong 0_o' },
   };
-  Object.assign(errObj, defaultErr, err);
-  return next(errObj);
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message.err);
 });
 
 app.listen(PORT, () => {
