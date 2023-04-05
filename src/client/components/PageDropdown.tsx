@@ -9,7 +9,7 @@ export const PageDropdown: React.FC = () => {
   }
 
   return (
-    <select onChange={handlePageChange}>
+    <select className='PageDropdown' onChange={handlePageChange}>
       <option value="Jobs">Jobs</option>
       <option value="Your Jobs">Your Jobs</option>
       <option value="Interviews">Interviews</option>

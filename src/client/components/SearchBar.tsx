@@ -46,7 +46,7 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
 
 //render components Jobs and search bar
   return (
-    <div className="header">
+    <div className="SearchBar">
       <form 
         onSubmit={
           (event) => {
@@ -73,11 +73,11 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
         }
       >
 
-        <input type="text" name="searchQuery" value={searchQuery} onChange={handleSearchChange} placeholder="Search Jobs" />
+        <input className="Input" type="text" name="searchQuery" value={searchQuery} onChange={handleSearchChange} placeholder="Search Jobs" />
 
-        <input type="text" name="searchLocation" value={searchLocation} onChange={handleSearchChange} placeholder="Location" />
+        <input className="Input" type="text" name="searchLocation" value={searchLocation} onChange={handleSearchChange} placeholder="Location" />
         
-        <select name="searchDatePosted" value={searchDatePosted} onChange={handleDropdownChange}>
+        <select className="Input" name="searchDatePosted" value={searchDatePosted} onChange={handleDropdownChange}>
           <option value="3600">Last Hour</option>
           <option value="28800">Last 8 Hours</option>
           <option value="43200">Last 12 Hours</option>
@@ -88,14 +88,14 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
           <option value="2419200">Past Month</option>
         </select>
 
-        <select name="searchJobType" value={searchJobType} onChange={handleDropdownChange}>
+        <select className="Input" name="searchJobType" value={searchJobType} onChange={handleDropdownChange}>
           <option value="Full-time">Full-time</option>
           <option value="Part-time">Part-time</option>
           <option value="Contract">Contract</option>
           <option value="Internship">Internship</option>
         </select>
 
-        <select name="searchOnsiteRemote" value={searchOnsiteRemote} onChange={handleDropdownChange}>
+        <select className="Input" name="searchOnsiteRemote" value={searchOnsiteRemote} onChange={handleDropdownChange}>
           <option value="On-site">On-site</option>
           <option value="Remote">Remote</option>
           <option value="Hybrid">Hybrid</option>
@@ -106,7 +106,7 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
           <input type="checkbox" name="searchEasyApply" checked={searchEasyApply} onChange={handleSearchChange} />
           Easy Apply
         </label> */}
-        <button type="submit">Search</button>
+        <button className="Input" type="submit">Search</button>
       </form>
     </div>
   );
