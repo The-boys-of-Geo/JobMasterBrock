@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-
+export interface JobFeedProps {
+  jobs: any[]
+}
+export interface JobSheetProps {
+  handleSearchSubmit: (useSearchParms: URLSearchParams) => Promise<void>
+}
 //define header component
 export const JobSheet: React.FC = () => {
   

@@ -1,31 +1,24 @@
 import React, { useState } from 'react';
+import type { JobFeedProps } from '../containers/jobFeedContainer';
 
 interface JobCardProps {
-  id: number;
-  datePosted: string;
-  title: string;
-  company: string;
-  location: string;
-  description: string;
-  remote: boolean;
-  requirements: string;
-  salary: number;
-  easyApply: boolean;
+  Title: string;
+  Company: string;
+  Location: string;
+  Link: string;
+  DatePosted: string;
+  ID: number;
+
 }
 
 const JobCard: React.FC<JobCardProps> = ({
-  id,
-  datePosted,
-  title,
-  company,
-  location,
-  description,
-  remote,
-  requirements,
-  salary,
-  easyApply,
+  Title,
+  Company,
+  Location,
+  Link,
+  DatePosted,
+  ID,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const onInterested = async () => {
     try {
@@ -34,7 +27,7 @@ const JobCard: React.FC<JobCardProps> = ({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ jobId: id }),
+        body: JSON.stringify({ jobId: ID }),
       });
 
       if (response.ok) {
@@ -49,22 +42,12 @@ const JobCard: React.FC<JobCardProps> = ({
 
   return (
     <div>
-      <h2>{title}</h2>
-      <p>{company}</p>
-      <p>{location}</p>
-      <p>{salary}</p>
-      <p>{datePosted}</p>
-      {easyApply && <p>Easy Apply</p>}
-      <button onClick={() => setIsExpanded(!isExpanded)}>
-        {isExpanded ? 'Hide Details' : 'View Details'}
-      </button>
-      {isExpanded && (
-        <div>
-          <p>{description}</p>
-          <p>{requirements}</p>
-          <p>{remote ? 'Remote' : 'Not remote'}</p>
-        </div>
-      )}
+      <h2>{Title}</h2>
+      <p>{Company}</p>
+      <p>{Location}</p>
+      <p>{Link}</p>
+      <p>{DatePosted}</p>
+      <p>{ID}</p>
       <button onClick={onInterested}>Interested</button>
     </div>
   );

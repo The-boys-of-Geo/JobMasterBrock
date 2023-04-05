@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
+import { searchBody } from "../pages/JobPage";
+
+interface SearchBarProps {
+  handleSearchSubmit: (jobSearch: searchBody) => Promise<void>;
+  setJobs?: Dispatch<SetStateAction<any>> 
+}
 
 
-export const SearchBar: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchLocation, setSearchLocation] = useState<string>("");
-  const [searchDatePosted, setSearchDatePosted] = useState<string>("");
-  const [searchJobType, setSearchJobType] = useState<string>("");
-  const [searchOnsiteRemote, setSearchOnsiteRemote] = useState<string>("");
+export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJobs } ) => {
+  const [searchQuery, setSearchQuery] = useState<string>("Software Engineer");
+  const [searchLocation, setSearchLocation] = useState<string>("Los Angeles");
+  const [searchDatePosted, setSearchDatePosted] = useState<string>("3600");
+  const [searchJobType, setSearchJobType] = useState<string>("Full-time");
+  const [searchOnsiteRemote, setSearchOnsiteRemote] = useState<string>("Remote");
 
 
   //const [searchEasyApply, setSearchEasyApply] = useState<boolean>(false);
@@ -37,34 +43,35 @@ export const SearchBar: React.FC = () => {
     }
   };
 
-  const handleSearchSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // const searchParams = new URLSearchParams({
-    //   searchQuery,
-    //   searchLocation,
-    //   searchJobType,
-    //   searchDatePosted,
-    //   searchTitle,
-    //   searchRemote: searchRemote.toString(),
-    // });
 
-    // try {
-    //   const response = await fetch(`/jobs?${searchParams.toString()}`);
-
-    //   if (response.ok) {
-    //     const jobs = await response.json();
-    //     setJobs(jobs);
-    //   } else {
-    //     console.log(`Request failed with status ${response.status}`);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
 //render components Jobs and search bar
   return (
     <div className="header">
-      <form onSubmit={handleSearchSubmit}>
+      <form 
+        onSubmit={
+          (event) => {
+            event.preventDefault();
+            const body = {
+              search: searchQuery,
+              location: searchLocation,
+              time: parseInt(searchDatePosted),   //<-- 1hr
+              count: 0, //<-- where you are in the search results. First one is 0 and increment by 1 each time
+              jobType:{
+                FT: false,
+                PT: false,
+                C: false,
+                I: false,
+              }
+            }
+            if (searchJobType === 'Full-time') body.jobType.FT = true;
+            else if (searchJobType === 'Part-time') body.jobType.PT = true;
+            else if (searchJobType === 'Contract') body.jobType.C = true;
+            else if (searchJobType === 'Internship') body.jobType.I = true;
+
+            handleSearchSubmit(body);
+          }
+        }
+      >
 
         <input type="text" name="searchQuery" value={searchQuery} onChange={handleSearchChange} placeholder="Search Jobs" />
 
@@ -85,8 +92,6 @@ export const SearchBar: React.FC = () => {
           <option value="Full-time">Full-time</option>
           <option value="Part-time">Part-time</option>
           <option value="Contract">Contract</option>
-          <option value="Temporary">Temporary</option>
-          <option value="Volunteer">Volunteer</option>
           <option value="Internship">Internship</option>
         </select>
 

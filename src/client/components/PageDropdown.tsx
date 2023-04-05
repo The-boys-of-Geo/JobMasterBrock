@@ -10,7 +10,7 @@ export const PageDropdown: React.FC = () => {
 
   return (
     <select onChange={handlePageChange}>
-      <option value="Jobs">Your Jobs</option>
+      <option value="Jobs">Jobs</option>
       <option value="Your Jobs">Your Jobs</option>
       <option value="Interviews">Interviews</option>
       <option value="Group Share">Group Share</option>
