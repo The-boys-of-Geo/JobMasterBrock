@@ -167,4 +167,29 @@ userController.removeJob = async function (
   }
 };
 
+// res.locals.userApps - save here
+userController.getUserApps = async function (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { userId } = req.params;
+    const query =
+      'SELECT * FROM jobs INNER JOIN applications ON applications.job_id = jobs.job_id WHERE applications.user_id = $1';
+    const queryValue = [userId];
+    const result = await db.query(query, queryValue);
+    res.locals.userApps = result.rows;
+    return next();
+  } catch (error) {
+    const err = {
+      log: `Error: unable to get user\'s applications, ${error}`,
+      status: 404,
+      message: {
+        err: 'Error in userController.getUserApps: Check server log for more details.',
+      },
+    };
+    return next(err);
+  }
+};
 export default userController;
