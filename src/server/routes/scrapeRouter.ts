@@ -6,9 +6,17 @@ import scraperController from '../controllers/scraperController';
 
 router.post(
   '/getLinkedInData',
-  scraperController.scrapeData,
+  scraperController.scrapeJobListings,
   (req: Request, res: Response) => {
     res.status(200).json(res.locals.linkedInData);
+  }
+);
+
+router.get(
+  '/getLinkedInData/:jobID',
+  scraperController.scrapeJobInfo,
+  (req: Request, res: Response) => {
+    res.status(200).send(res.locals.jobData);
   }
 );
 
