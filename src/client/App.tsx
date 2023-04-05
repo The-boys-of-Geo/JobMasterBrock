@@ -6,6 +6,7 @@ import { JobPage } from './pages/JobPage';
 //import { ApplicationsPage } from './pages/ApplicationsPage'
 import { InterviewPage } from './pages/InterviewPage'
 import AuthModal from './components/AuthModal'
+
 function App() {
   const [signedIn, setSignedIn] = useState(false);
 
@@ -13,13 +14,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<AuthModal />} />
+        <Route path="/auth" element={<AuthModal />} />
         <Route path="/" element={ <JobPage />} />
         {/* <Route path="/applications" element={ <ApplicationsPage />} /> */}
         <Route path="/interviews" element={ <InterviewPage />} />
       </Routes>
-       
-      
     </Router>
   );
 }
