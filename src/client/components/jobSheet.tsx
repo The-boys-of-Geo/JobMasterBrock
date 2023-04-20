@@ -13,7 +13,7 @@ export const JobSheet: React.FC = () => {
   return (
     <div className="JobSheet">
       <div className="JobSheetInner">
-        <h1>JOB SHEET COMPONENT</h1>
+        
       </div>
     </div>
   );

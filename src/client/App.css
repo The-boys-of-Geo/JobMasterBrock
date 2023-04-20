@@ -1,3 +1,10 @@
+:root {
+  --primary: #f5f5f5;
+  --primaryLight: #e1e9ee;
+  --accent: #0077b5;
+  --accentLight: #0a66c2;
+}
+
 #page {
   background-color: var(--primary);
 }
@@ -7,25 +14,17 @@
 }
 
 body::-webkit-scrollbar {
-  width: 4px;               /* width of the entire scrollbar */
+  width: 4px; /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--primaryLight);        /* color of the tracking area */
+  background: var(--primaryLight); /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--primaryLight);    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: none;  /* creates padding around scroll thumb */
-}
-
-
-:root {
-  --primary: hsl(167, 72%, 60%);
-  --primaryLight: hsl(167, 72%, 85%);
-  --accent: hsl(241, 100%, 77%);
-  --accentLight: hsl(241, 100%, 90%);
+  background-color: var(--primaryLight); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: none; /* creates padding around scroll thumb */
 }
 
 .Background {
@@ -44,12 +43,16 @@ body::-webkit-scrollbar-thumb {
 }
 
 .AuthModal {
-  height: 40vh;
+  height: 50vh;
   width: 40vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
 }
 
 .InnerAuthModal {
@@ -61,159 +64,59 @@ body::-webkit-scrollbar-thumb {
   display: grid;
   grid-template-rows: 7% 93%;
   grid-template-columns: 34% 66%;
-  grid-template-areas:
-  "header header"
-  "JobFeed JobSheet";
+  grid-template-areas: "header header" "JobFeed JobSheet";
 }
 
 .header {
   grid-row: 1;
   grid-area: header;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-content: center;
-
-
-  padding: 5px 5px;
-  border-radius: 2px;
-  border: 1px solid rgba(0, 0, 0, 1.0);
-  background-color: var(--accent);
-  margin: 4px 4px;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #283e4a;
+  color: #f5f5f5;
 }
 
 .PageDropdown {
   margin: 2px 2px;
   border: none;
-  border-radius: 2px;
+  border-radius: 8px;
   background-color: var(--primaryLight);
 }
 
 .SearchBar button:hover {
   background-color: var(--accentLight);
-  
 }
 
 .Input {
   margin: 2px 2px;
   border: none;
-  border-radius: 2px;
+  border-radius: 8px;
   background-color: var(--primaryLight);
 }
-
-
 
 .JobCardFeed {
   grid-row: 2;
   grid-area: JobFeed;
-  height: 600px;
-  
+  height: calc(100vh - 100px); /* Subtracting 100px from viewport height to account for header and footer */
   overflow-y: scroll;
-
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 1.0);
-  border-radius: 2px;
+  border-radius: 8px;
   background-color: var(--accent);
   margin: 4px 4px;
 }
+
 
 .JobCard {
   display: flex;
-  border-radius: 2px;
+  border-radius: 8px;
   margin: 2px 2px;
-}
-
-.JobCardInner {
-  width: 100%;
-  
-  padding: 5px 5px;
-  margin: 5px 5px;
-  border-radius: 2px;
-  background-color: var(--primaryLight);
-}
-
-.JobCardInner a {
-  font-size: 15px;
-  color:rgba(0, 0, 0, 1.0);
-  text-decoration: none;
-}
-.JobCardInner a:hover {
-  font-size: 15px;
-  color:rgba(0, 0, 0, 0.6);
-}
-
-.JobCardInner p {
-  font-size: 12px;
-  margin: 2px;
-}
-
-#interestedButton {
-  display: inline-block;
-  background-color: var(--accent);
-  padding: 4px;
-  margin: 0px 2px;
-  width: 65px;
-  color: rgba(0, 0, 0, 0.85);
-  text-align: center;
-  border: none;
-  border-radius: 2px; /* add this line */
-  font-size: 12px; /* add this line */
-}
-
-#interestedButton:hover {
-  display: inline-block;
-  background-color: var(--accentLight);
-  padding: 4px;
-  width: 65px;
-  color: rgba(0, 0, 0, 1.0);
-  text-align: center;
-  border: none;
-  border-radius: 2px; /* add this line */
-  font-size: 12px; /* add this line */
-}
-
-#detailsButton {
-  display: inline-block;
-  background-color: var(--accent);
-  padding: 4px;
-  margin: 0px 2px;
-  width: 65px;
-  color: rgba(0, 0, 0, 0.85);
-  text-align: center;
-  border: none;
-  border-radius: 2px; /* add this line */
-  font-size: 12px; /* add this line */
-}
-
-#detailsButton:hover {
-  display: inline-block;
-  background-color: var(--accentLight);
-  padding: 4px;
-  width: 65px;
-  color: rgba(0, 0, 0, 1.0);
-  text-align: center;
-  border: none;
-  border-radius: 2px; /* add this line */
-  font-size: 12px; /* add this line */
-}
-
-.JobSheet {
-  grid-row: 2;
-  grid-area: JobSheet;
-  justify-self: stretch;
-  width: auto;
-
-  border: 1px solid rgba(0, 0, 0, 1.0);
-  border-radius: 3px;
-  background-color: var(--accent);
-  margin: 4px 4px;
-}
-
-.JobSheetInner {
-  border-radius: 2px;
-  margin: 10px 10px;
-  padding: 5px 5px;
-  background-color: var(--primaryLight);
+  border: 1px solid #ccc;
+  padding: 8px;
 }
