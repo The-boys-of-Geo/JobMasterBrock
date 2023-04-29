@@ -56,7 +56,7 @@ export const JobPage: React.FC = () => {
         setJobs(updatedJobs);
         setTimeout(() => {
           setJobsLoaded(false);
-        }, 2000)
+        }, 4000)
       } else {
         console.log(`Request failed with status ${response.status}`);
       }
