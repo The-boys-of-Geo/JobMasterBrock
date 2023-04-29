@@ -1,5 +1,5 @@
 // jobFeedContainer.tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import JobCard from '../components/JobCard.tsx';
 import JobCard from '../components/jobCard';
 import { searchBody } from '../pages/JobPage';
@@ -35,11 +35,9 @@ interface JobCardProps {
 
 
 const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
-  const [scrollTop, setScrollTop] = useState(0);
 
   const handleScroll = (event: any) => {
     const div = event.currentTarget;
-    setScrollTop(div.scrollTop);
     if(Math.abs(div.scrollHeight - div.clientHeight - div.scrollTop) < 50) {
       onScroll();
     }

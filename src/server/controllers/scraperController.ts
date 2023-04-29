@@ -40,11 +40,6 @@ scraperController.scrapeJobListings = async function (
      */
     //TODO add jobType to req.body
     const { search, location, time, count, jobType } = req.body;
-    //www.linkedin.com/jobs/search?keywords=Software%20Engineer&location=United%20States&sortBy=R&f_TPR=r86400&f_JT=F%2CP%2CC&position=1&pageNum=0
-    // https: //www.linkedin.com/jobs/search?keywords=software%20engineer&location=United%20States&sortBy=R&f_TPR=r311040000&f_JT=%2CFT%2CPT%2CC%2CI&position=1&pageNum=0
-    // f_JT=F%2CP%2CC%2CI%2CO
-    // let url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=email%2Bdeveloper&location=United%2BStates&geoId=103644278&trk=public_jobs_jobs-search-bar_search-submit&currentJobId=2931031787&position=1&pageNum=0&start=0'
-    // let url = 'https://www.linkedin.com/jobs/search?keywords=software%20engineer&location=United%20States&position=1&pageNum=0';
     const searchParsed = search.replaceAll(' ', '%20');
     const locationParsed = location.replaceAll(' ', '%20');
     const timeParsed = time;

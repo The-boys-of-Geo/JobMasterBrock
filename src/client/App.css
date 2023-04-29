@@ -1,8 +1,13 @@
 :root {
   --primary: #f5f5f5;
   --primaryLight: #e1e9ee;
+  --primaryDark: #bcc3c7;
   --accent: #0077b5;
-  --accentLight: #0a66c2;
+  --accentLight: #0077b5;
+}
+
+body {
+  margin: 0;
 }
 
 #page {
@@ -75,9 +80,10 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  border-radius: 8px;
+  margin: 0;
+  /* border-radius: 8px; */
   border: none;
-  background-color: #283e4a;
+  background-color: #0077b5;
   color: #f5f5f5;
 }
 
@@ -93,7 +99,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .Input {
-  margin: 2px 2px;
+  margin: 0 5px;
+  padding: 0 5px;
   border: none;
   border-radius: 8px;
   background-color: var(--primaryLight);
@@ -108,10 +115,9 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 1.0);
   border-radius: 8px;
-  background-color: var(--accent);
+  background-color: var(--primaryLight);
   margin: 4px 4px;
 }
-
 
 .JobCard {
   display: flex;
@@ -119,4 +125,17 @@ body::-webkit-scrollbar-thumb {
   margin: 2px 2px;
   border: 1px solid #ccc;
   padding: 8px;
+}
+
+.JobCard:hover {
+  background: var(--primaryDark);
+  cursor: pointer;
+}
+
+.JobCardInner > a:link{
+  text-decoration: none;
+}
+
+.JobCardInner > a:hover{
+  text-decoration: underline;
 }

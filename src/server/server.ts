@@ -13,6 +13,7 @@ import scraper from './routes/scrapeRouter';
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(bodyParser.json());
 // Handle all other requests with React Router
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/index.html'));

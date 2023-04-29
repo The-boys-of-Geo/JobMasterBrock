@@ -12,9 +12,10 @@ export const JobSheet: React.FC = () => {
   //render components Jobs and search bar
   return (
     <div className="JobSheet">
-      <div className="JobSheetInner">
+      
+      {/* <div className="JobSheetInner">
         
-      </div>
+      </div> */}
     </div>
   );
 };
