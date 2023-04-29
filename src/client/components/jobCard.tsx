@@ -7,6 +7,7 @@ interface JobCardProps {
   Location: string;
   Link: string;
   DatePosted: string;
+  TimePosted: string;
   ID: number;
 
 }
@@ -16,6 +17,7 @@ const JobCard: React.FC<JobCardProps> = ({
   Company,
   Location,
   Link,
+  TimePosted,
   DatePosted,
   ID,
   }) => {
@@ -40,18 +42,19 @@ const JobCard: React.FC<JobCardProps> = ({
     }
   };
 
-  return (
-    
-    
+  const showDetails = async() => {
 
+  }
+
+  return (
     <div className='JobCard'>
       <div className='JobCardInner'>
         <a href={Link}>{Title}</a>
         <p>{Company}</p>
         <p>{Location}</p>
-        <p>{DatePosted}</p>
+        <p>{DatePosted} ({TimePosted})</p>
         <button id='interestedButton' onClick={onInterested}>Interested</button>
-        <button id='detailsButton' onClick={onInterested}>Details</button>
+        <button id='detailsButton' onClick={showDetails}>Details</button>
       </div>
     </div>
   );

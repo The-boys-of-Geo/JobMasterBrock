@@ -56,6 +56,7 @@ const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
         Location={job.Location}
         Link={job.Link}
         DatePosted={job.DatePosted}
+        TimePosted={job.TimePosted}
         ID={job.ID}
         key={job.ID}
       />
