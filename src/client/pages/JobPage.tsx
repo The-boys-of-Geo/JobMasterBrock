@@ -1,6 +1,6 @@
 import React ,{ useState, useEffect, Dispatch, SetStateAction } from 'react';
 import JobFeedContainer from "../containers/jobFeedContainer";
-import type { JobFeedProps } from '../containers/jobFeedContainer';
+// import type { JobFeedProps } from '../containers/jobFeedContainer';
 import { Header, JobSheet } from '../components/Components';
 //import type { JobSheetProps } from '../containers/jobFeedContainer';
 
@@ -26,9 +26,14 @@ export const JobPage: React.FC = () => {
   const [jobs, setJobs] = useState([]);
   const [jobsQuery, setJobsQuery] = useState(null);
   const [count, setCount] = useState(0);
+  const [jobsLoaded, setJobsLoaded] = useState(false);
+  const [keepSearching, setKeepSearching] = useState(true);
   
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
+    setCount(count + 1);
+    jobSearch.count = count;
+    console.log(count);
     setJobsQuery(jobSearch);
     try {
       const response = await fetch('/api/search/getLinkedInData', {
@@ -39,10 +44,19 @@ export const JobPage: React.FC = () => {
         body: JSON.stringify(jobSearch)
       });
       if (response.ok) {
-        const jobs = await response.json();
-        console.log(`jobs`, jobs)
-        
-        setJobs(jobs);
+        const newJobs = await response.json();
+        const filteredJobs = newJobs.filter((newJob: any) => {
+          return !jobs.some((job) => job.ID === newJob.ID);
+        });
+        if(!filteredJobs.length) {
+          setKeepSearching(false);
+        }
+        console.log('filteredJobs: ', filteredJobs);
+        const updatedJobs = [...jobs, ...filteredJobs];
+        setJobs(updatedJobs);
+        setTimeout(() => {
+          setJobsLoaded(false);
+        }, 2000)
       } else {
         console.log(`Request failed with status ${response.status}`);
       }
@@ -50,8 +64,16 @@ export const JobPage: React.FC = () => {
       console.log(error, `catch block error`)
     }
   };
- 
 
+  const onBottomScroll = () => {
+    //load 25 more when near bottom and more available
+    console.log('onBottomScroll: ');
+    if(!jobsLoaded && keepSearching) {
+      setJobsLoaded(true);
+      handleSearchSubmit(jobsQuery)
+    }
+  }
+ 
   return (
     <div className='JobPage'>
       <Header 
@@ -63,6 +85,7 @@ export const JobPage: React.FC = () => {
         handleSearchSubmit={handleSearchSubmit}
         jobsQuery={jobsQuery}
         count={count}
+        onScroll={onBottomScroll}
       />
       <JobSheet />
     </div>

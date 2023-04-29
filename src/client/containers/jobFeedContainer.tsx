@@ -1,5 +1,5 @@
 // jobFeedContainer.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import JobCard from '../components/JobCard.tsx';
 import JobCard from '../components/jobCard';
 import { searchBody } from '../pages/JobPage';
@@ -9,6 +9,7 @@ export interface JobFeedProps {
   handleSearchSubmit: (jobSearch: searchBody) => Promise<void>
   jobsQuery: any
   count: number
+  onScroll?: () => void;
 }
 
 interface Job {
@@ -30,23 +31,35 @@ interface JobCardProps {
   Link: string;
   DatePosted: string;
   ID: number;
-
 }
 
 
-const JobFeedContainer: React.FC<JobFeedProps> = ( { handleSearchSubmit, jobs, jobsQuery, count } ) => {
-  
-  console.log(jobs);
+const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
+  const [scrollTop, setScrollTop] = useState(0);
 
-  //example job added
+  const handleScroll = (event: any) => {
+    const div = event.currentTarget;
+    setScrollTop(div.scrollTop);
+    if(Math.abs(div.scrollHeight - div.clientHeight - div.scrollTop) < 50) {
+      onScroll();
+    }
+  };
+
   return (
     
-    <div className='JobCardFeed'>
+    <div className='JobCardFeed' onScroll={handleScroll}>
       {jobs.map((job)=>{
        return (
-       <JobCard Title={job.Title} Company={job.Company} Location={job.Location} Link={job.Link} DatePosted={job.DatePosted} ID={job.ID} key={job.ID}/>
-     );})}
-      
+        <JobCard
+        Title={job.Title}
+        Company={job.Company}
+        Location={job.Location}
+        Link={job.Link}
+        DatePosted={job.DatePosted}
+        ID={job.ID}
+        key={job.ID}
+      />
+     )})}      
     </div>
   );
 };

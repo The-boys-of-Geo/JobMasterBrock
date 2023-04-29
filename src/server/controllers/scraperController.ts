@@ -61,9 +61,9 @@ scraperController.scrapeJobListings = async function (
         }
       }
     });
-    let url = `https://www.linkedin.com/jobs/search?keywords=${searchParsed}&location=${locationParsed}&sortBy=R&f_TPR=r${timeParsed}&f_JT=${jobTypeParsed}&position=1&pageNum=${countParsed}`;
+    let url = `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${searchParsed}&location=${locationParsed}&sortBy=R&f_TPR=r${timeParsed}&f_JT=${jobTypeParsed}&position=1&pageNum=0&start=${countParsed}`;
     console.log('url: ', url);
-    axios(url).then((response) => {
+    axios({ url: url, timeout: 30000 }).then((response) => {
       const html = response.data;
       const $ = load(html);
       const jobs = $('li');

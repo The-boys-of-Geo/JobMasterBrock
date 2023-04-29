@@ -36,7 +36,7 @@ const JobCard: React.FC<JobCardProps> = ({
         console.log('Failed to add job to interested list');
       }
     } catch (error) {
-      console.error('Error occurred while adding job to interested list:', error);
+      console.error('Error occurred while adding job to interested list:', error.response.data);
     }
   };
 
