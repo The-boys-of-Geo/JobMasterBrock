@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   entry: './src/client/index.tsx',
   output: {
@@ -22,7 +23,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -32,11 +33,16 @@ module.exports = {
         },
       },
       {
-        //add rule to test ts/tsx files & compile
+        // Add rule to test ts/tsx files & compile
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: ['ts-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      }
+      
     ],
   },
   //resolve extensions
@@ -50,6 +56,6 @@ module.exports = {
         router: () => 'http://localhost:3000',
       },
     },
-    historyApiFallback: true
+    historyApiFallback: true,
   },
 };
