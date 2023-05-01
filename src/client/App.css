@@ -1,70 +1,44 @@
 :root {
-  --primary: #f5f5f5;
-  --primaryLight: #e1e9ee;
-  --accent: #0077b5;
-  --accentLight: #0a66c2;
+  --primary: #E9E9E9;
+  --primaryLight: #F6F6F6;
+  --accent: #FFCC00;
+  --accentLight: #FFDE4D;
+  --font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size: 14px;
+  }
+}
+
+body {
+  font-size: var(--font-size);
 }
 
 #page {
-  background-color: var(--primary);
+  background-color: #F2F2F2;
+  background-image: linear-gradient(90deg, #F2F2F2, #D9D9D9, #F2F2F2);
 }
 
 #root {
-  color: white(167, 72%, 60%);
-}
-
-body::-webkit-scrollbar {
-  width: 4px; /* width of the entire scrollbar */
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--primaryLight); /* color of the tracking area */
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--primaryLight); /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
-  border: none; /* creates padding around scroll thumb */
-}
-
-.Background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #333;
 }
 
 .AuthModal {
-  height: 50vh;
-  width: 40vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  height: 70vh;
+  width: 90vw;
   border-radius: 8px;
   border: 1px solid #dadce0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background-color: #fff;
 }
 
-.InnerAuthModal {
-  display: flex;
-  flex-direction: column;
-}
-
 .JobPage {
   display: grid;
-  grid-template-rows: 7% 93%;
-  grid-template-columns: 34% 66%;
-  grid-template-areas: "header header" "JobFeed JobSheet";
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 100%;
+  grid-template-areas: "header" "JobFeed";
 }
 
 .header {
@@ -77,8 +51,8 @@ body::-webkit-scrollbar-thumb {
   padding: 8px 16px;
   border-radius: 8px;
   border: none;
-  background-color: #283e4a;
-  color: #f5f5f5;
+  background-color: #2F2F2F;
+  color: #F6F6F6;
 }
 
 .PageDropdown {
@@ -104,14 +78,10 @@ body::-webkit-scrollbar-thumb {
   grid-area: JobFeed;
   height: calc(100vh - 100px); /* Subtracting 100px from viewport height to account for header and footer */
   overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 1.0);
   border-radius: 8px;
-  background-color: var(--accent);
+  background-color: #2F2F2F;
   margin: 4px 4px;
 }
-
 
 .JobCard {
   display: flex;
@@ -119,4 +89,82 @@ body::-webkit-scrollbar-thumb {
   margin: 2px 2px;
   border: 1px solid #ccc;
   padding: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #B5B5B5;
+}
+
+.JobCard:hover {
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  border: 1px solid var(--accentLight);
+}
+
+.JobCardTitle {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.JobCardCompany {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.JobCardLocation {
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.JobCardDescription {
+  font-size: 0.9rem;
+  font-weight: normal;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.ApplyButton {
+  margin-top: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: var(--accent);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.ApplyButton:hover {
+  background-color: var(--accentLight);
+}
+
+.Footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-top: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: #283e4a;
+  color: #f5f5f5;
+}
+
+.Footer a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .JobCardFeed {
+    height: calc(100vh - 150px); /* Subtracting 150px from viewport height to account for header and footer */
+  }
 }
