@@ -73,11 +73,11 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
         }
       >
 
-        <input className="Input" type="text" name="searchQuery" value={searchQuery} onChange={handleSearchChange} placeholder="Search Jobs" />
+        <input className="Input" type="text" name="searchQuery" value={searchQuery} onChange={handleSearchChange} placeholder="Search Jobs" style={{  fontFamily: 'Pokemon Solid',fontSize: "18px", height: "40px" }} />
 
-        <input className="Input" type="text" name="searchLocation" value={searchLocation} onChange={handleSearchChange} placeholder="Location" />
+        <input className="Input" type="text" name="searchLocation" value={searchLocation} onChange={handleSearchChange} placeholder="Location" style={{ fontFamily: 'Pokemon Solid', fontSize: "18px", height: "40px" }} />
         
-        <select className="Input" name="searchDatePosted" value={searchDatePosted} onChange={handleDropdownChange}>
+        <select className="Input" name="searchDatePosted" value={searchDatePosted} onChange={handleDropdownChange} style={{  fontFamily: 'Pokemon Solid', fontSize: "18px", height: "40px" }}>
           <option value="3600">Last Hour</option>
           <option value="28800">Last 8 Hours</option>
           <option value="43200">Last 12 Hours</option>
@@ -88,14 +88,14 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
           <option value="2419200">Past Month</option>
         </select>
 
-        <select className="Input" name="searchJobType" value={searchJobType} onChange={handleDropdownChange}>
+        <select className="Input" name="searchJobType" value={searchJobType} onChange={handleDropdownChange} style={{ fontFamily: 'Pokemon Solid', fontSize: "18px", height: "40px" }}>
           <option value="Full-time">Full-time</option>
           <option value="Part-time">Part-time</option>
           <option value="Contract">Contract</option>
           <option value="Internship">Internship</option>
         </select>
 
-        <select className="Input" name="searchOnsiteRemote" value={searchOnsiteRemote} onChange={handleDropdownChange}>
+        <select className="Input" name="searchOnsiteRemote" value={searchOnsiteRemote} onChange={handleDropdownChange} style={{  fontFamily: 'Pokemon Solid', fontSize: "18px", height: "40px" }}>
           <option value="On-site">On-site</option>
           <option value="Remote">Remote</option>
           <option value="Hybrid">Hybrid</option>
@@ -108,7 +108,7 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
         </label> */}
         <button 
           className="Input" 
-          type="submit"
+          type="submit" style={{  fontFamily: 'Pokemon Solid', fontSize: "18px", height: "40px" }}
         >Search</button>
       </form>
     </div>
