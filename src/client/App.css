@@ -42,17 +42,19 @@ body {
 }
 
 .header {
-  grid-row: 1;
-  grid-area: header;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background-color: #2F2F2F;
-  color: #F6F6F6;
+grid-row: 1;
+grid-area: header;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 8px 16px;
+border-radius: 8px;
+border: none;
+background-color: #2F2F2F;
+color: #FFFFFF; /* changing the font color to white /
+font-size: 1.5rem; / increasing the font size /
+font-weight: bold; / making the font bold */
 }
 
 .PageDropdown {
@@ -82,7 +84,10 @@ body {
   background-color: #2F2F2F;
   margin: 4px 4px;
 }
-
+.JobCard img {
+  width: 100px;
+  height: 100px;
+}
 .JobCard {
   display: flex;
   border-radius: 8px;

@@ -31,7 +31,12 @@ interface JobCardProps {
   Link: string;
   DatePosted: string;
   ID: number;
+  pokemonData: {
+    front_default: string;
+    back_default: string;
+  };
 }
+
 
 
 const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
