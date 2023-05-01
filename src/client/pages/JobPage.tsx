@@ -28,12 +28,12 @@ export const JobPage: React.FC = () => {
   const [count, setCount] = useState(0);
   const [jobsLoaded, setJobsLoaded] = useState(false);
   const [keepSearching, setKeepSearching] = useState(true);
+  const [jobDetails, setJobDetails] = useState('');
   
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
     setCount(count + 1);
     jobSearch.count = count;
-    console.log(count);
     setJobsQuery(jobSearch);
     try {
       const response = await fetch('/api/search/getLinkedInData', {
@@ -73,6 +73,21 @@ export const JobPage: React.FC = () => {
       handleSearchSubmit(jobsQuery)
     }
   }
+
+  const onClickDetails = async (ID: number) => {
+    console.log(ID)
+
+    try {
+      const response = await fetch(`/api/search/getLinkedInData/${ID}`, {
+        method: 'GET',
+      });
+      const data = await response.text();
+      console.log(data)
+      setJobDetails(data);
+    } catch (error) {
+      console.error('Error occurred while adding job to interested list:', error);
+    }
+  }
  
   return (
     <div className='JobPage'>
@@ -86,8 +101,9 @@ export const JobPage: React.FC = () => {
         jobsQuery={jobsQuery}
         count={count}
         onScroll={onBottomScroll}
+        onClick={onClickDetails}
       />
-      <JobSheet />
+      <JobSheet jobDetails={jobDetails}/>
     </div>
   )
 };

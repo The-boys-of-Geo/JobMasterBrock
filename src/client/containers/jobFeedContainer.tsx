@@ -10,6 +10,7 @@ export interface JobFeedProps {
   jobsQuery: any
   count: number
   onScroll?: () => void;
+  onClick?: (ID: number) => void;
 }
 
 interface Job {
@@ -34,7 +35,7 @@ interface JobCardProps {
 }
 
 
-const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
+const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll, onClick } ) => {
 
   const handleScroll = (event: any) => {
     const div = event.currentTarget;
@@ -57,6 +58,7 @@ const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
         TimePosted={job.TimePosted}
         ID={job.ID}
         key={job.ID}
+        onClick={onClick}
       />
      )})}      
     </div>

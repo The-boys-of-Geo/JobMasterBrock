@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export interface JobFeedProps {
   jobs: any[];
 }
 export interface JobSheetProps {
-  handleSearchSubmit: (useSearchParms: URLSearchParams) => Promise<void>;
+  jobDetails: string
 }
 
 //define header component
-export const JobSheet: React.FC = () => {
+export const JobSheet: React.FC<JobSheetProps> = ({ jobDetails }) => {
   //render components Jobs and search bar
   return (
     <div className="JobSheet">
-      
-      {/* <div className="JobSheetInner">
-        
-      </div> */}
+      <td dangerouslySetInnerHTML={{__html: jobDetails}} />
     </div>
   );
 };

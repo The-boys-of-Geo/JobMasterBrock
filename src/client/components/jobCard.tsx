@@ -9,6 +9,7 @@ interface JobCardProps {
   DatePosted: string;
   TimePosted: string;
   ID: number;
+  onClick?: (ID: number) => void;
 }
 
 const JobCard: React.FC<JobCardProps> = ({
@@ -19,9 +20,8 @@ const JobCard: React.FC<JobCardProps> = ({
   TimePosted,
   DatePosted,
   ID,
+  onClick
   }) => {
-
-  const [details, setDetails] = useState('');
 
   const onInterested = async () => {
     try {
@@ -42,27 +42,21 @@ const JobCard: React.FC<JobCardProps> = ({
       console.error('Error occurred while adding job to interested list:', error.response.data);
     }
   };
-
-  const showDetails = async(jobID:number) => {
-    try {
-      const response = await fetch(`getLinkedInData/?jobID=${jobID}`, {
-        method: 'GET',
-      });
-      const data = await response.text();
-      setDetails(data);
-    } catch (error) {
-      console.error('Error occurred while adding job to interested list:', error);
-    }
+  const showDetails = (event: any) => {
+    onClick(event.currentTarget.id);
   }
 
   return (
-    <div className='JobCard' onClick={() => showDetails(ID)} details={details}>
+    <div className='JobCard' onClick={showDetails} id={`${ID}`}>
       <div className='JobCardInner'>
-        <a href={Link}>{Title}</a>
+        <a href={Link} target='_blank' rel='noreferrer noopener'>{Title}</a>
         <p>{Company}</p>
         <p>{Location}</p>
         <p>{DatePosted} {TimePosted ?`(${TimePosted})` : null}</p>
         <button id='interestedButton' onClick={onInterested}>Interested</button>
+      </div>
+      <div>
+
       </div>
     </div>
   );

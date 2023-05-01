@@ -125,16 +125,17 @@ scraperController.scrapeJobInfo = async function (
   res: Response,
   next: NextFunction
 ) {
+  console.log("hello")
   try {
     const { jobID } = req.params;
-    //
     let url = `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${jobID}`;
-    //
+    console.log(' url: ',  url);
+
     axios(url).then((response) => {
       const html = response.data;
-      //
       const $ = load(html);
       const jobData = $('div.show-more-less-html__markup ');
+      console.log(jobData)
       res.locals.jobData = `${jobData.html()}`;
       return next();
     });
