@@ -1,5 +1,5 @@
 // jobFeedContainer.tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import JobCard from '../components/JobCard.tsx';
 import JobCard from '../components/jobCard';
 import { searchBody } from '../pages/JobPage';
@@ -10,6 +10,7 @@ export interface JobFeedProps {
   jobsQuery: any
   count: number
   onScroll?: () => void;
+  onClick?: (ID: number) => void;
 }
 
 interface Job {
@@ -38,13 +39,10 @@ interface JobCardProps {
 }
 
 
-
-const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
-  const [scrollTop, setScrollTop] = useState(0);
+const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll, onClick } ) => {
 
   const handleScroll = (event: any) => {
     const div = event.currentTarget;
-    setScrollTop(div.scrollTop);
     if(Math.abs(div.scrollHeight - div.clientHeight - div.scrollTop) < 50) {
       onScroll();
     }
@@ -61,8 +59,10 @@ const JobFeedContainer: React.FC<JobFeedProps> = ( { jobs, onScroll } ) => {
         Location={job.Location}
         Link={job.Link}
         DatePosted={job.DatePosted}
+        TimePosted={job.TimePosted}
         ID={job.ID}
         key={job.ID}
+        onClick={onClick}
       />
      )})}      
     </div>

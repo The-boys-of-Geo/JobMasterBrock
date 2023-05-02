@@ -14,15 +14,8 @@ const Header: React.FC<HeaderProps> = ( { handleSearchSubmit, setJobs } ) => {
 //render components Jobs, logo and search bar
   return (
     <div className="header">
-      <h1 className="logo" style={{ 
-  fontFamily: 'Pokemon Solid',
-  color: '#ffcb05',
-  textShadow: '2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, -2px -2px 0 #fff, 0 0 12px #fff'
-}}>Job Master Brock</h1>
+      <h1 className="logo">Job Master Brock</h1>
 {/* <img src={require('../assets/brock-pokemon.gif')} alt="Brock Pokemon" /> */}
-
-
-
       <PageDropdown />
       <SearchBar 
         handleSearchSubmit={handleSearchSubmit}

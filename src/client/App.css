@@ -1,6 +1,7 @@
 :root {
   --primary: #E9E9E9;
-  --primaryLight: #F6F6F6;
+  --primaryLight: #f6f6f6;
+  --primaryDark: #bcc3c7;
   --accent: #FFCC00;
   --accentLight: #FFDE4D;
   --font-size: 16px;
@@ -13,6 +14,7 @@
 }
 
 body {
+  margin: 0;
   font-size: var(--font-size);
 }
 
@@ -25,6 +27,14 @@ body {
   color: #333;
 }
 
+.logo {
+  font-family: 'Pokemon Solid';
+  font-size: 50px;
+  color: #ffcb05;
+  text-shadow: 2px 2px 0 #2D6AB3, 2px -2px 0 #2D6AB3, -2px 2px 0 #2D6AB3, -2px -2px 0 #2D6AB3, 0 0 12px #2D6AB3;
+  cursor: default;
+}
+
 .AuthModal {
   height: 70vh;
   width: 90vw;
@@ -35,10 +45,12 @@ body {
 }
 
 .JobPage {
+  margin: 0;
   display: grid;
-  grid-template-rows: 10% 90%;
-  grid-template-columns: 100%;
-  grid-template-areas: "header" "JobFeed";
+  gap: 0;
+  grid-template-rows: 7% 93%;
+  grid-template-columns: 34% 66%;
+  grid-template-areas: "header header" "JobFeed JobSheet";
 }
 
 .header {
@@ -57,32 +69,52 @@ font-size: 1.5rem; / increasing the font size /
 font-weight: bold; / making the font bold */
 }
 
-.PageDropdown {
-  margin: 2px 2px;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--primaryLight);
-}
-
 .SearchBar button:hover {
   background-color: var(--accentLight);
 }
 
 .Input {
-  margin: 2px 2px;
+  margin: 0 5px;
+  padding: 0 5px;
   border: none;
   border-radius: 8px;
   background-color: var(--primaryLight);
+  font-family: 'Pokemon Solid';
+  font-size: 1.1rem;
+  height: 40px;
+  transition: all 0.3s ease-in-out;
+}
+
+#interestedButton {
+  font-family: 'Pokemon Solid';
+  border: solid 3px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-left: 5px;
+  background-color: var(--accentLight);
+  height: 30px;
+}
+
+#interestedButton:hover {
+  transform: scale(1.15);
+  cursor: pointer;
 }
 
 .JobCardFeed {
   grid-row: 2;
   grid-area: JobFeed;
-  height: calc(100vh - 100px); /* Subtracting 100px from viewport height to account for header and footer */
+  height: calc(100vh - 105px); /* Subtracting 100px from viewport height to account for header and footer */
   overflow-y: scroll;
-  border-radius: 8px;
-  background-color: #2F2F2F;
-  margin: 4px 4px;
+  /* border-radius: 8px; */
+  background-color: #c5c5c5;
+  margin: 5px 0;
+}
+
+.JobSheet {
+  height: calc(100vh - 165px); 
+  margin: 5px 0;
+  overflow-y: scroll;
+  font-family: 'Roboto', sans-serif;
 }
 .JobCard img {
   width: 100px;
@@ -91,20 +123,35 @@ font-weight: bold; / making the font bold */
 .JobCard {
   display: flex;
   border-radius: 8px;
-  margin: 2px 2px;
-  border: 1px solid #ccc;
+  margin: 8px 8px;
+  /* border: 3px solid #ccc; */
   padding: 8px;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  color: #B5B5B5;
+  background-color:#2D6AB3;
 }
 
 .JobCard:hover {
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  border: 1px solid var(--accentLight);
+  border: 6px solid var(--accentLight);
+  background-color:#1c549a;
+  cursor: pointer;
 }
 
-.JobCardTitle {
+a:link {
+  text-decoration: none;
+  color: rgb(238, 212, 13);
+  font-size: 25px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: rgb(35, 35, 35);
+}
+
+/* .JobCardTitle {
   font-size: 1.2rem;
   margin-bottom: 4px;
 }
@@ -130,6 +177,10 @@ font-weight: bold; / making the font bold */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+} */
+
+.JobCardInner {
+  color: rgb(226, 226, 226);
 }
 
 .ApplyButton {
