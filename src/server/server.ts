@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 let cors = require('cors')
 import path from 'path';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 
 const app: Application = express();
 
@@ -13,10 +13,9 @@ import scraper from './routes/scrapeRouter';
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, '../client')));
+// app.use(bodyParser.json());
 // Handle all other requests with React Router
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/client/index.html'));
-});
+
 //****** FILTERS ******//
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +31,10 @@ app.use('/api/search', scraper);
 app.use('*', (req: Request, res: Response) =>
   res.status(404).json('ERROR 404: not found')
 );
+
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/client/index.html'));
+});
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
