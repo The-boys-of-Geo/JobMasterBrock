@@ -111,6 +111,8 @@ font-weight: bold; / making the font bold */
 }
 
 .JobSheet {
+  grid-row: 2;
+  grid-area: JobSheet;
   height: calc(100vh - 165px); 
   margin: 5px 0;
   overflow-y: scroll;

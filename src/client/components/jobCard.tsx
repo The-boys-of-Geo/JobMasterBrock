@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import type { JobFeedProps } from '../containers/jobFeedContainer';
 
 interface JobCardProps {
   Title: string;
@@ -19,7 +20,9 @@ const JobCard: React.FC<JobCardProps> = ({
   TimePosted,
   DatePosted,
   ID,
-}) => {
+  onClick
+  }) => {
+
   const [pokemon, setPokemon] = useState<string>('');
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -55,8 +58,6 @@ const JobCard: React.FC<JobCardProps> = ({
       });
     setIsClicked(true);
   };
-  onClick
-  }) => {
 
   const onInterested = async () => {
     try {
@@ -77,9 +78,6 @@ const JobCard: React.FC<JobCardProps> = ({
       console.error('Error occurred while adding job to interested list:', error.response.data);
     }
   };
-  const showDetails = (event: any) => {
-    onClick(event.currentTarget.id);
-  }
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -90,17 +88,19 @@ const JobCard: React.FC<JobCardProps> = ({
     setIsHovering(false);
     setIsWalkingBack(true);
     };
-    
-    return (
-    <div className='JobCard'>
-    <div className='JobCardInner'>
-    <a href={Link} style={{ color: 'yellow', fontSize: '1.2rem', fontWeight: 'bold', textShadow: '2px 2px #333' }}>
-    {Title}
-    </a>
-    <p>{Company}</p>
-    <p>{Location}</p>
-    <p>{DatePosted}</p>
-    <img
+
+  const showDetails = (event: any) => {
+    onClick(event.currentTarget.id);
+  }
+
+  return (
+    <div className='JobCard' onClick={showDetails} id={`${ID}`}>
+      <div className='JobCardInner'>
+        <a href={Link} target='_blank' rel='noreferrer noopener'>{Title}</a>
+        <p>{Company}</p>
+        <p>{Location}</p>
+        <p>{DatePosted} {TimePosted ?`(${TimePosted})` : null}</p>
+        <img
     className='PokemonImage'
     src={pokemon}
     alt='Pokemon'
@@ -115,24 +115,13 @@ const JobCard: React.FC<JobCardProps> = ({
     : 'none',
     }}
     />
-    <button onClick={onInterested}>Interested</button>
-
-  return (
-    <div className='JobCard' onClick={showDetails} id={`${ID}`}>
-      <div className='JobCardInner'>
-        <a href={Link} target='_blank' rel='noreferrer noopener'>{Title}</a>
-        <p>{Company}</p>
-        <p>{Location}</p>
-        <p>{DatePosted} {TimePosted ?`(${TimePosted})` : null}</p>
         <button id='interestedButton' onClick={onInterested}>Interested</button>
       </div>
       <div>
 
       </div>
+    </div>
+  );
+};
 
-    </div>
-    </div>
-    );
-    };
-    
-    export default JobCard;
+export default JobCard;
