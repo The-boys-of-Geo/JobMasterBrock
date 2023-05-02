@@ -67,7 +67,6 @@ export const JobPage: React.FC = () => {
 
   const onBottomScroll = () => {
     //load 25 more when near bottom and more available
-    console.log('onBottomScroll: ');
     if(!jobsLoaded && keepSearching) {
       setJobsLoaded(true);
       handleSearchSubmit(jobsQuery)
@@ -75,14 +74,12 @@ export const JobPage: React.FC = () => {
   }
 
   const onClickDetails = async (ID: number) => {
-    console.log(ID)
 
     try {
       const response = await fetch(`/api/search/getLinkedInData/${ID}`, {
         method: 'GET',
       });
       const data = await response.text();
-      console.log(data)
       setJobDetails(data);
     } catch (error) {
       console.error('Error occurred while adding job to interested list:', error);
@@ -103,7 +100,7 @@ export const JobPage: React.FC = () => {
         onScroll={onBottomScroll}
         onClick={onClickDetails}
       />
-      <JobSheet jobDetails={jobDetails}/>
+          <JobSheet jobDetails={jobDetails}/>
     </div>
   )
 };

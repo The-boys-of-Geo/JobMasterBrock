@@ -11,8 +11,12 @@ export interface JobSheetProps {
 export const JobSheet: React.FC<JobSheetProps> = ({ jobDetails }) => {
   //render components Jobs and search bar
   return (
-    <div className="JobSheet">
-      <td dangerouslySetInnerHTML={{__html: jobDetails}} />
-    </div>
+    <table>
+    <tbody>
+    <tr>
+      <td dangerouslySetInnerHTML={{__html: jobDetails}} className="JobSheet"/>
+    </tr>
+    </tbody>
+      </table>
   );
 };
