@@ -57,7 +57,6 @@ scraperController.scrapeJobListings = async function (
       }
     });
     let url = `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${searchParsed}&location=${locationParsed}&sortBy=R&f_TPR=r${timeParsed}&f_JT=${jobTypeParsed}&position=1&pageNum=0&start=${countParsed}`;
-    console.log('url: ', url);
     axios({ url: url, timeout: 30000 }).then((response) => {
       const html = response.data;
       const $ = load(html);
@@ -125,17 +124,14 @@ scraperController.scrapeJobInfo = async function (
   res: Response,
   next: NextFunction
 ) {
-  console.log("hello")
   try {
     const { jobID } = req.params;
     let url = `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${jobID}`;
-    console.log(' url: ',  url);
 
     axios(url).then((response) => {
       const html = response.data;
       const $ = load(html);
       const jobData = $('div.show-more-less-html__markup ');
-      console.log(jobData)
       res.locals.jobData = `${jobData.html()}`;
       return next();
     });

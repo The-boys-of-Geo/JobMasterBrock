@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import JobFeedContainer from "../containers/jobFeedContainer";
 // import type { JobFeedProps } from '../containers/jobFeedContainer';
 import { Header, JobSheet } from '../components/Components';
@@ -21,6 +21,7 @@ export type searchBody = {
   }
 }
 
+export const JobSheetContext = React.createContext(null);
 
 export const JobPage: React.FC = () => {
   const [jobs, setJobs] = useState([]);
@@ -51,7 +52,6 @@ export const JobPage: React.FC = () => {
         if(!filteredJobs.length) {
           setKeepSearching(false);
         }
-        console.log('filteredJobs: ', filteredJobs);
         const updatedJobs = [...jobs, ...filteredJobs];
         setJobs(updatedJobs);
         setTimeout(() => {
@@ -100,7 +100,9 @@ export const JobPage: React.FC = () => {
         onScroll={onBottomScroll}
         onClick={onClickDetails}
       />
-          <JobSheet jobDetails={jobDetails}/>
+      <JobSheetContext.Provider value={jobDetails}>
+        <JobSheet />
+      </JobSheetContext.Provider>
     </div>
   )
 };

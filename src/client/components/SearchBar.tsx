@@ -21,7 +21,6 @@ export const SearchBar: React.FC<SearchBarProps> = ( { handleSearchSubmit, setJo
     switch (event.target.name) {
       case "searchDatePosted":
         setSearchDatePosted(event.target.value);
-        console.log('Date posted: ', searchDatePosted)
         break;
       case "searchJobType":
         setSearchJobType(event.target.value);
