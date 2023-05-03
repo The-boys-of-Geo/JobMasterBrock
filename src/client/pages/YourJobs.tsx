@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from 'react-beautiful-dnd';
 
 interface Job {
   id: string;
@@ -10,11 +15,11 @@ interface Job {
 export const YourJobs: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([
     { id: 'job7', title: 'Software Developer', status: 'applied' },
-  { id: 'job8', title: 'UI/UX Designer', status: 'applied' },
-  { id: 'job9', title: 'Marketing Manager', status: 'interested' },
-  { id: 'job10', title: 'Sales Representative', status: 'interested' },
-  { id: 'job11', title: 'Project Manager', status: 'inprogress' },
-  { id: 'job12', title: 'Data Analyst', status: 'inprogress' },
+    { id: 'job8', title: 'UI/UX Designer', status: 'applied' },
+    { id: 'job9', title: 'Marketing Manager', status: 'interested' },
+    { id: 'job10', title: 'Sales Representative', status: 'interested' },
+    { id: 'job11', title: 'Project Manager', status: 'inprogress' },
+    { id: 'job12', title: 'Data Analyst', status: 'inprogress' },
   ]);
 
   const onDragEnd = (result: DropResult) => {
@@ -26,7 +31,10 @@ export const YourJobs: React.FC = () => {
     }
 
     // if dropped in the same location
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
       return;
     }
 
@@ -167,5 +175,6 @@ export const YourJobs: React.FC = () => {
           </div>
         )}
       </Droppable>
-      </DragDropContext>
-  )}
+    </DragDropContext>
+  );
+};

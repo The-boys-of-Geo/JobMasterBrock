@@ -19,10 +19,7 @@ const pool = new Pool({
 // This will be required in the controllers to be the access point to the database
 
 export default {
-  query: async (
-    text: string,
-    params?: any[]
-  ): Promise<QueryResult<any>> => {
+  query: async (text: string, params?: any[]): Promise<QueryResult<any>> => {
     console.log('executed query', text);
     return pool.query(text, params);
   },
