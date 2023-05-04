@@ -79,12 +79,6 @@ const JobCard: React.FC<JobCardProps> = ({
     }
   };
 
-  // const handleMouseEnter = () => {
-  //   setIsHovering(true);
-  // };
-  // const handleMouseLeave = () => {
-  //   setIsHovering(false);
-  // };
   const onClickDetails = async (ID: number) => {
     try {
       const response = await fetch(`/api/search/getLinkedInData/${ID}`, {
@@ -124,12 +118,6 @@ const JobCard: React.FC<JobCardProps> = ({
           src={pokemon}
           alt="Pokemon"
           onClick={handleClick}
-          // onMouseEnter={handleMouseEnter}
-          // onMouseLeave={handleMouseLeave}
-          // style={{
-          //   transform: isWalkingBack ? 'scaleX(-1)' : 'scaleX(1)',
-          //   animation: isHovering ? 'walk 0.5s steps(4) infinite' : 'none',
-          // }}
         />
     </div>
   );

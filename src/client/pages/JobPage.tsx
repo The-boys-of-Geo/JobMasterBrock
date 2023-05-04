@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import JobFeedContainer from '../containers/jobFeedContainer';
 import { JobCardProps } from '../components/jobCard';
-// import type { JobFeedProps } from '../containers/jobFeedContainer';
 import { Header, JobSheet } from '../components/Components';
-//import type { JobSheetProps } from '../containers/jobFeedContainer';
 
 export type searchBody = {
   search: string;
@@ -21,7 +19,7 @@ interface jobType {
 }
 
 interface jobDetails {
-  html: string | undefined;
+  html: string;
   job: JobCardProps;
 }
 
@@ -32,14 +30,18 @@ export const HeaderContext = React.createContext(null);
 export const JobPage: React.FC = () => {
   const [jobs, setJobs] = useState<JobCardProps[]>([]);
   const [jobsQuery, setJobsQuery] = useState<searchBody>();
-  const [count, setCount] = useState<number>(0);
   const [jobsLoaded, setJobsLoaded] = useState<boolean>(false);
   const [keepSearching, setKeepSearching] = useState<boolean>(true);
   const [jobDetails, setJobDetails] = useState<jobDetails>({html: null, job: null});
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
-    setCount(count + 1);
-    jobSearch.count = count;
+    setJobsQuery(jobSearch);
+    let currJobs = jobs;
+    if(jobSearch.count === 0) {
+      setJobs([]);
+      setKeepSearching(true);
+      currJobs = [];
+    }
     setJobsQuery(jobSearch);
     try {
       const response = await fetch('/api/search/getLinkedInData', {
@@ -57,7 +59,7 @@ export const JobPage: React.FC = () => {
         if (!filteredJobs.length) {
           setKeepSearching(false);
         }
-        const updatedJobs = [...jobs, ...filteredJobs];
+        const updatedJobs = [...currJobs, ...filteredJobs];
         setJobs(updatedJobs);
         setTimeout(() => {
           setJobsLoaded(false);
@@ -82,7 +84,6 @@ export const JobPage: React.FC = () => {
           setJobDetails,
           jobsLoaded,
           setJobsLoaded,
-          count,
           keepSearching,
           jobsQuery,
           handleSearchSubmit,
