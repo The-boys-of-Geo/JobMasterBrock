@@ -85,11 +85,11 @@ const JobCard: React.FC<JobCardProps> = ({
         method: 'GET',
       });
       const data = await response.text();
-      const jobsIndex = jobs.findIndex((el:JobCardProps) => {
-        return el.ID === ID
+      const jobsIndex = jobs.findIndex((el: JobCardProps) => {
+        return el.ID === ID;
       });
 
-      setJobDetails({html: data, job: jobs[jobsIndex]});
+      setJobDetails({ html: data, job: jobs[jobsIndex] });
     } catch (error) {
       console.error(
         'Error occurred while adding job to interested list:',
@@ -109,16 +109,16 @@ const JobCard: React.FC<JobCardProps> = ({
         <p>
           {DatePosted} {TimePosted ? `(${TimePosted})` : null}
         </p>
-          <button id="interestedButton" onClick={onInterested}>
-            Interested
-          </button>
+        <button id="interestedButton" onClick={onInterested}>
+          Interested
+        </button>
       </div>
-        <img
-          className="PokemonImage"
-          src={pokemon}
-          alt="Pokemon"
-          onClick={handleClick}
-        />
+      <img
+        className="PokemonImage"
+        src={pokemon}
+        alt="Pokemon"
+        onClick={handleClick}
+      />
     </div>
   );
 };

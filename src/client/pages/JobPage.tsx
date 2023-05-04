@@ -32,12 +32,15 @@ export const JobPage: React.FC = () => {
   const [jobsQuery, setJobsQuery] = useState<searchBody>();
   const [jobsLoaded, setJobsLoaded] = useState<boolean>(false);
   const [keepSearching, setKeepSearching] = useState<boolean>(true);
-  const [jobDetails, setJobDetails] = useState<jobDetails>({html: null, job: null});
+  const [jobDetails, setJobDetails] = useState<jobDetails>({
+    html: null,
+    job: null,
+  });
 
   const handleSearchSubmit = async (jobSearch: searchBody) => {
     setJobsQuery(jobSearch);
     let currJobs = jobs;
-    if(jobSearch.count === 0) {
+    if (jobSearch.count === 0) {
       setJobs([]);
       setKeepSearching(true);
       currJobs = [];
@@ -92,7 +95,7 @@ export const JobPage: React.FC = () => {
         <JobFeedContainer />
       </JobFeedContainerContext.Provider>
 
-      <JobSheetContext.Provider value={{jobDetails, jobs}}>
+      <JobSheetContext.Provider value={{ jobDetails, jobs }}>
         <JobSheet />
       </JobSheetContext.Provider>
     </div>

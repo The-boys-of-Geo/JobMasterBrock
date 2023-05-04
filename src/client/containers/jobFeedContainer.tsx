@@ -20,19 +20,25 @@ const JobFeedContainer: React.FC = () => {
       onBottomScroll();
     }
   };
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     const div = document.getElementsByClassName('JobCardFeed');
-    if (Math.abs(div[0].scrollHeight - div[0].clientHeight - div[0].scrollTop) < 50 && jobs.length) {
+    if (
+      Math.abs(div[0].scrollHeight - div[0].clientHeight - div[0].scrollTop) <
+        50 &&
+      jobs.length
+    ) {
       onBottomScroll();
     }
-  },[jobsLoaded])
+  }, [jobsLoaded]);
 
   const onBottomScroll = () => {
     //load 25 more when near bottom and more available
     if (!jobsLoaded && keepSearching) {
       setJobsLoaded(true);
-      const currJobsQuery = Object.assign(jobsQuery, { count: ++jobsQuery.count })
+      const currJobsQuery = Object.assign(jobsQuery, {
+        count: ++jobsQuery.count,
+      });
       console.log('currJobsQuery: ', currJobsQuery);
       handleSearchSubmit(currJobsQuery);
     }
