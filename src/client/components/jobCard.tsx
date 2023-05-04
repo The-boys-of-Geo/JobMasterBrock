@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import type { JobFeedProps } from '../containers/jobFeedContainer';
+import React, { useState, useEffect, useContext } from 'react';
+import { JobFeedContainerContext } from '../pages/JobPage';
 
-interface JobCardProps {
+export interface JobCardProps {
   Title: string;
   Company: string;
   Location: string;
@@ -20,13 +20,11 @@ const JobCard: React.FC<JobCardProps> = ({
   TimePosted,
   DatePosted,
   ID,
-  onClick
-  }) => {
-
+}) => {
   const [pokemon, setPokemon] = useState<string>('');
-  const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [isHovering, setIsHovering] = useState<boolean>(false);
-  const [isWalkingBack, setIsWalkingBack] = useState<boolean>(false);
+  // const [isHovering, setIsHovering] = useState<boolean>(false);
+  // const [isWalkingBack, setIsWalkingBack] = useState<boolean>(false);
+  const { jobs, setJobDetails } = useContext(JobFeedContainerContext);
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
@@ -56,7 +54,6 @@ const JobCard: React.FC<JobCardProps> = ({
             setPokemon(data.sprites.front_default);
           });
       });
-    setIsClicked(true);
   };
 
   const onInterested = async () => {
@@ -75,51 +72,53 @@ const JobCard: React.FC<JobCardProps> = ({
         console.log('Failed to add job to interested list');
       }
     } catch (error) {
-      console.error('Error occurred while adding job to interested list:', error.response.data);
+      console.error(
+        'Error occurred while adding job to interested list:',
+        error.response.data
+      );
     }
   };
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    setIsWalkingBack(false);
+  const onClickDetails = async (ID: number) => {
+    try {
+      const response = await fetch(`/api/search/getLinkedInData/${ID}`, {
+        method: 'GET',
+      });
+      const data = await response.text();
+      const jobsIndex = jobs.findIndex((el: JobCardProps) => {
+        return el.ID === ID;
+      });
+
+      setJobDetails({ html: data, job: jobs[jobsIndex] });
+    } catch (error) {
+      console.error(
+        'Error occurred while adding job to interested list:',
+        error
+      );
+    }
   };
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setIsWalkingBack(true);
-    };
-
-  const showDetails = (event: any) => {
-    onClick(event.currentTarget.id);
-  }
-
   return (
-    <div className='JobCard' onClick={showDetails} id={`${ID}`}>
-      <div className='JobCardInner'>
-        <a href={Link} target='_blank' rel='noreferrer noopener'>{Title}</a>
+    <div className="JobCard" onClick={() => onClickDetails(ID)} id={`${ID}`}>
+      <div className="JobCardInner">
+        <a href={Link} target="_blank" rel="noreferrer noopener">
+          {Title}
+        </a>
         <p>{Company}</p>
         <p>{Location}</p>
-        <p>{DatePosted} {TimePosted ?`(${TimePosted})` : null}</p>
-        <img
-    className='PokemonImage'
-    src={pokemon}
-    alt='Pokemon'
-    onClick={handleClick}
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
-    style={{
-    cursor: 'pointer',
-    transform: isWalkingBack ? 'scaleX(-1)' : 'scaleX(1)',
-    animation: isHovering
-    ? 'walk 0.5s steps(4) infinite'
-    : 'none',
-    }}
-    />
-        <button id='interestedButton' onClick={onInterested}>Interested</button>
+        <p>
+          {DatePosted} {TimePosted ? `(${TimePosted})` : null}
+        </p>
+        <button id="interestedButton" onClick={onInterested}>
+          Interested
+        </button>
       </div>
-      <div>
-
-      </div>
+      <img
+        className="PokemonImage"
+        src={pokemon}
+        alt="Pokemon"
+        onClick={handleClick}
+      />
     </div>
   );
 };

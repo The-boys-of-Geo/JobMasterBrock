@@ -4,21 +4,16 @@ import { YourJobs } from './pages/YourJobs';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { JobPage } from './pages/JobPage';
 //import { ApplicationsPage } from './pages/ApplicationsPage'
-import { InterviewPage } from './pages/InterviewPage'
+import { InterviewPage } from './pages/InterviewPage';
 
 function App() {
-
-
-
   return (
     <Router>
       <Routes>
-      <Route path="/" element={ <JobPage />} />
-      <Route path="/applications" element={ <YourJobs />} />
-      <Route path="/interviews" element={ <InterviewPage />} />
+        <Route path="/" element={<JobPage />} />
+        <Route path="/applications" element={<YourJobs />} />
+        <Route path="/interviews" element={<InterviewPage />} />
       </Routes>
-       
-      
     </Router>
   );
 }
@@ -33,6 +28,5 @@ function App() {
 //     </div>
 //   );
 // }
-
 
 export default App;

@@ -14,7 +14,6 @@ userController.signup = async (
 ) => {
   // this req.body should contain the user's username and password
   try {
-    
     const { username, password } = req.body;
     // checks for valid leetcode username
     // checks for if username is already taken

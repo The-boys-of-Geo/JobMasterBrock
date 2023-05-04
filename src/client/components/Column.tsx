@@ -4,12 +4,10 @@ type Props = {
   column: {
     title: string;
   };
-}
+};
 
 const Column: React.FC<Props> = ({ column }) => {
-  return (
-    <div>{column.title}</div>
-  );
-}
+  return <div>{column.title}</div>;
+};
 
 export default Column;

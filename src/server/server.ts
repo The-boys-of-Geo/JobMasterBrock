@@ -1,5 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-let cors = require('cors')
+let cors = require('cors');
 import path from 'path';
 // import bodyParser from 'body-parser';
 
@@ -17,23 +17,21 @@ app.use(express.static(path.join(__dirname, '../client')));
 // Handle all other requests with React Router
 
 //****** FILTERS ******//
-app.use(cors())
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 //****** REQUESTS ******//
 app.use('/api/users', users);
 app.use('/api/search', scraper);
-
 
 //****** ERROR HANDLERS ******//
 app.use('*', (req: Request, res: Response) =>
   res.status(404).json('ERROR 404: not found')
 );
 
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/client/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
